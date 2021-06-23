@@ -35,7 +35,7 @@ function Books() {
 
       <ul className="BookList">
         {bookArray.map((book) => (
-          <SingleBook key={book.bookId} book={book} />
+          <SingleBook key={book.bookId} title={book.title} img={book.img} />
         ))}
       </ul>
     </div>

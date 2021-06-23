@@ -1,11 +1,10 @@
 import React from 'react';
-
-function SingleBook(props) {
-  const { book } = props;
+/* eslint-disable react/prop-types */
+function SingleBook({ title, img }) {
   return (
     <li className="SingleBook">
-      <h3>{book.title}</h3>
-      <img alt="book" src={book.img} />
+      <h3>{title}</h3>
+      <img alt="book" src={img} />
     </li>
   );
 }
