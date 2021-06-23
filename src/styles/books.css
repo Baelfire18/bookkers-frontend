@@ -1,35 +1,30 @@
 .Books {
+  text-align: center;
+  padding-bottom: 1em;
+  color: white;
+  background: darkcyan;
+}
 
-    text-align: center;
-    padding-bottom: 1em;
-    color: white;
-    background: darkcyan;
+.Title {
+  background-color: rgb(8, 42, 82);
+  margin: 1em;
+}
 
-  }
-  .Title {
-
-      background-color: rgb(8, 42, 82);
-      margin: 1em;  
-
-  }
-
-.BookList{
-
-    align-items: center;
-    text-align: center;
-    margin: 0 auto;
-    text-align: center;
+.BookList {
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .SingleBook {
-
-    background-color: rgb(8, 42, 82);
-    width: 30%;
-    align-items: center;
-    text-align: center;
-    border-radius: 5%;
-    display: inline-block;
-    vertical-align: top;
-    margin-right: 5%;
-    margin-top: 3%;     
+  background-color: rgb(8, 42, 82);
+  width: 30%;
+  align-items: center;
+  text-align: center;
+  border-radius: 5%;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 5%;
+  margin-top: 3%;
 }
