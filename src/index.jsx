@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Books from './components/Books';
+import App from './App';
+// import Book from './components/Books'
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Books />
+    <App />
   </React.StrictMode>,
   document.getElementById('root'),
 );

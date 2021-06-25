@@ -19,7 +19,7 @@
 
 .SingleBook {
   background-color: rgb(8, 42, 82);
-  width: 30%;
+  width: clamp(200px, 30%, 600px);
   align-items: center;
   text-align: center;
   border-radius: 5%;
@@ -27,4 +27,9 @@
   vertical-align: top;
   margin-right: 5%;
   margin-top: 3%;
+}
+
+.SingleBook .image {
+  width: clamp(200px, 70%, 600px);
+  height: clamp(200px, 70%, 600px);
 }
