@@ -4,6 +4,10 @@ import { FaUserAlt } from '@react-icons/all-files/fa/FaUserAlt';
 import { FaPowerOff } from '@react-icons/all-files/fa/FaPowerOff';
 
 export default function NavBar() {
+  function toggleBurgerMenu() {
+    document.querySelector('.navbar-menu').classList.toggle('is-active');
+  }
+
   return (
     <nav className="navbar is-dark">
       <div className="container">
@@ -11,8 +15,13 @@ export default function NavBar() {
           <a className="navbar-item" href="/">
             <img src="https://img.icons8.com/emoji/452/orange-book.png" className="d-inline-block align-top" alt="\" />
           </a>
+          <div onClick={toggleBurgerMenu} className="navbar-burger navbar-dropdown" data-target="navMenuColorblack-example">
+            <span />
+            <span />
+            <span />
+          </div>
         </div>
-        <div id="navbarBasicExample" className="navbar-brand navbar-menu">
+        <div id="navMenuColorblack-example" className="navbar-menu">
           <div className="navbar-end">
             <Link to="/" className="navbar-item">Home</Link>
             <Link to="/authors/1" className="navbar-item">MyProfile</Link>
@@ -22,15 +31,15 @@ export default function NavBar() {
             </a>
 
             {/* <?php if ($_SESSION['name']): ?> */}
-            <div className=" navbar-menu navbar-item has-dropdown is-hoverable">
+            <div className="navbar-item has-dropdown is-hoverable">
               <p className="navbar-link">
                 Humberto Oltuzar
                 <div className="navbar-dropdown">
-                  <Link to="/authors/1" className="navbar-item">
+                  <Link to="/authors/1" className="navbar-item" onClick={(event) => { event.target.blur(); }}>
                     Profile -
                     <FaUserAlt />
                   </Link>
-                  <Link to="/wenlo420" className="navbar-item">
+                  <Link to="/wenlo420" className="navbar-item" onClick={(event) => { event.target.blur(); }}>
                     Log Out -
                     <FaPowerOff />
                   </Link>
