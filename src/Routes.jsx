@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './views/Home';
 import AuthorList from './views/AuthorList';
 import AuthorDetail from './views/AuthorDetail';

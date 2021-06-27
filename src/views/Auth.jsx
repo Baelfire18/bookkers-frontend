@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { FaRegEnvelope } from "@react-icons/all-files/fa/FaRegEnvelope";
 import { AiFillLock } from "@react-icons/all-files/ai/AiFillLock";
 import { FcCheckmark } from "@react-icons/all-files/fc/FcCheckmark";

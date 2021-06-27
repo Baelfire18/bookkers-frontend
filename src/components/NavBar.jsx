@@ -9,7 +9,7 @@ export default function NavBar( ) {
             <div className="container">
                 <div className="navbar-brand">
                     <a className="navbar-item" href="/">
-                        <img src="https://img.icons8.com/emoji/452/orange-book.png" className="d-inline-block align-top"></img>
+                        <img src="https://img.icons8.com/emoji/452/orange-book.png" className="d-inline-block align-top" alt="\"></img>
                     </a>
                 </div>
                 <div id="navbarBasicExample" className="navbar-brand navbar-menu">
@@ -18,18 +18,18 @@ export default function NavBar( ) {
                         <Link to="/authors/1" className="navbar-item">MyProfile</Link>
                         <Link to="/books" className="navbar-item">Books</Link>
                         <a className="navbar-item" href="/chileNecesitaAJoseAntonioKast">
-                            <img src="https://cdn.pixabay.com/photo/2013/07/12/17/50/bookmark-152545_960_720.png" width="40" height="80" className="d-inline-block align-top"></img>
+                            <img src="https://cdn.pixabay.com/photo/2013/07/12/17/50/bookmark-152545_960_720.png" width="40" height="80" className="d-inline-block align-top" alt="\"></img>
                         </a>
     
                         {/* <?php if ($_SESSION['name']): ?> */}
                             <div className=" navbar-menu navbar-item has-dropdown is-hoverable">
-                                <a className="navbar-link">
+                                <p className="navbar-link">
                                     Humberto Oltuzar
                                     <div className="navbar-dropdown">
                                         <Link to="/authors/1" className="navbar-item">Profile - <FaUserAlt /></Link>
                                         <Link to="/wenlo420" className="navbar-item">Log Out - <FaPowerOff /></Link>
                                     </div>
-                                </a>
+                                </p>
                             </div>
     
                         {/* <?php else: ?> */}

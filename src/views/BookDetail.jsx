@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
-import Books from './BookList';
+import { useParams } from 'react-router-dom';
 import bookArray from '../seeds/books';
 
 export default function BookDetail() {
@@ -17,7 +16,7 @@ export default function BookDetail() {
               <img className="book-image" alt="book" src={img} />
             </div>
             <div class="column">
-              <p> Chupala Cacu ql, llegaste tarde</p>
+              <p> Chupala Cacu ql, llegaste tarde {bookId}</p>
               <button className="button is-info">Info</button>
               <button className="button is-success">Success</button>
               <button className="button is-warning">Warning</button>
