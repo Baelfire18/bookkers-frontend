@@ -25,10 +25,10 @@ export default function BookDetail() {
               Chupala Cacu ql, llegaste tarde
               {bookId}
             </p>
-            <button className="button is-info">Info</button>
-            <button className="button is-success">Success</button>
-            <button className="button is-warning">Warning</button>
-            <button className="button is-danger">Danger</button>
+            <button className="button is-info" type="submit">Info</button>
+            <button className="button is-success" type="submit">Success</button>
+            <button className="button is-warning" type="submit">Warning</button>
+            <button className="button is-danger" type="submit">Danger</button>
           </div>
         </div>
       </div>
