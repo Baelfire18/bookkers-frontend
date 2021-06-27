@@ -1,0 +1,14 @@
+name: IIC2513 Frontend Node CI
+
+on: pull_request
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: yarn install
+      - name: Run ESLint
+        run: yarn lint
