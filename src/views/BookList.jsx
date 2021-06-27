@@ -9,16 +9,16 @@ function Books() {
     <div>
       <Link to="/">Home</Link>
       <div className="Books">
-      <div className="Title">
-        <h1>Books</h1>
-      </div>
+        <div className="Title">
+          <h1>Books</h1>
+        </div>
 
-      <ul className="BookList">
-        {bookArray.map((book) => (
-          <SingleBook key={book.bookId} book={book} />
-        ))}
-      </ul>
-    </div>
+        <ul className="BookList">
+          {bookArray.map((book) => (
+            <SingleBook key={book.bookId} book={book} />
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

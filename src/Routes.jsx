@@ -17,14 +17,14 @@ export default function Routes() {
       <div>
         <div id="wrapper">
           <NavBar />
-          
+
           <body>
             <Switch>
               <Route path="/auth" component={Auth} />
               <Route path="/books/:id" component={BookDetail} />
               <Route path="/books" component={Books} />
               <Route path="/authors/:id" component={AuthorDetail} />
-              <Route path="/authors" component={AuthorList} />        
+              <Route path="/authors" component={AuthorList} />
               <Route exact path="/" component={Home} />
               <Route component={NotFound} />
             </Switch>
