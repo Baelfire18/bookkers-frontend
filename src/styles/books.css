@@ -29,7 +29,7 @@
   margin-top: 3%;
 }
 
-.SingleBook .image {
+.SingleBook .book-image {
   width: clamp(200px, 70%, 600px);
   height: clamp(200px, 70%, 600px);
 }

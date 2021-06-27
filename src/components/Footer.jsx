@@ -1,0 +1,15 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { AiOutlineInstagram } from "@react-icons//all-files/ai/AiOutlineInstagram";
+
+
+export default function Footer( ) {
+    return (
+        <footer class="footer">
+        <div class="content has-text-centered">
+            {/* <Link to="https://www.instagram.com/bastian_hilcker/" target="_blanck" className="navbar-item">Check our Instagram <AiOutlineInstagram /></Link> */}
+            <a href="https://www.instagram.com/bastian_hilcker/" target="_blanck" className="navbar-item">Check our Instagram <AiOutlineInstagram /></a>
+        </div>
+      </footer>
+    );
+}

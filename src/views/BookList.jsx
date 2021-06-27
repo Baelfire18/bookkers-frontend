@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SingleBook from './SingleBook';
+import SingleBook from '../components/SingleBook';
 import bookArray from '../seeds/books';
 import '../styles/books.css';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
-import Books from '../components/Books';
+import Books from './BookList';
 
 export default function AuthorDetail() {
   const { id } = useParams();
