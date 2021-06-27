@@ -29,7 +29,7 @@ export default function AuthorList() {
           </div>
           <div className="field">
             <p className="control">
-              <button className="button is-success">
+              <button className="button is-success" type="submit">
                 Login
               </button>
             </p>
