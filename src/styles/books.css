@@ -7,7 +7,7 @@
 
 .Title {
   background-color: rgb(8, 42, 82);
-  margin: 1em;
+  /* margin: 1em; */
 }
 
 .BookList {
@@ -19,17 +19,19 @@
 
 .SingleBook {
   background-color: rgb(8, 42, 82);
-  width: clamp(200px, 30%, 600px);
+  width: clamp(450px, 30%, 600px);
   align-items: center;
   text-align: center;
   border-radius: 5%;
   display: inline-block;
   vertical-align: top;
-  margin-right: 5%;
+  margin-right: 2.5%;
+  margin-left: 2.5%;
   margin-top: 3%;
 }
 
 .SingleBook .book-image {
+  margin-top: 10% ;
   width: clamp(200px, 70%, 600px);
   height: clamp(200px, 70%, 600px);
 }

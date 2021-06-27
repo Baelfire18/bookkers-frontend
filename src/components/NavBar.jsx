@@ -4,9 +4,7 @@ import { FaUserAlt } from '@react-icons/all-files/fa/FaUserAlt';
 import { FaPowerOff } from '@react-icons/all-files/fa/FaPowerOff';
 
 export default function NavBar() {
-  function toggleBurgerMenu() {
-    document.querySelector('.navbar-menu').classList.toggle('is-active');
-  }
+  const [isActive, setisActive] = React.useState(false);
 
   return (
     <nav className="navbar is-dark">
@@ -15,13 +13,13 @@ export default function NavBar() {
           <a className="navbar-item" href="/">
             <img src="https://img.icons8.com/emoji/452/orange-book.png" className="d-inline-block align-top" alt="\" />
           </a>
-          <div onClick={toggleBurgerMenu} className="navbar-burger navbar-dropdown" data-target="navMenuColorblack-example">
+          <div onClick={() => { setisActive(!isActive); }} onKeyDown={() => { setisActive(!isActive); }} role="button" tabIndex="0" className={`navbar-burger navbar-dropdown ${isActive ? 'is-active' : ''}`} data-target="navMenuColorblack-example">
             <span />
             <span />
             <span />
           </div>
         </div>
-        <div id="navMenuColorblack-example" className="navbar-menu">
+        <div id="navMenuColorblack-example" className={`navbar-menu ${isActive ? 'is-active' : ''}`}>
           <div className="navbar-end">
             <Link to="/" className="navbar-item">Home</Link>
             <Link to="/authors/1" className="navbar-item">MyProfile</Link>
@@ -33,14 +31,18 @@ export default function NavBar() {
             {/* <?php if ($_SESSION['name']): ?> */}
             <div className="navbar-item has-dropdown is-hoverable">
               <p className="navbar-link">
-                Humberto Oltuzar
+                Humberto Ortuzar
                 <div className="navbar-dropdown">
                   <Link to="/authors/1" className="navbar-item" onClick={(event) => { event.target.blur(); }}>
-                    Profile -
+                    Profile
+                    {' '}
+                    {' '}
                     <FaUserAlt />
                   </Link>
                   <Link to="/wenlo420" className="navbar-item" onClick={(event) => { event.target.blur(); }}>
-                    Log Out -
+                    Log Out
+                    {' '}
+                    {' '}
                     <FaPowerOff />
                   </Link>
                 </div>
@@ -48,7 +50,7 @@ export default function NavBar() {
             </div>
 
             {/* <?php else: ?> */}
-            <Link to="/auth" className="navbar-item">Login</Link>
+            <Link to="/login" className="navbar-item">Login</Link>
             <a className="navbar-item" href="/~grupo18/register.php">Registrarme</a>
             {/* <?php endif ?> */}
           </div>

@@ -8,30 +8,25 @@ import BookDetail from './views/BookDetail';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 // import SingleBook from './components/SingleBook';
-import Auth from './views/Auth';
+import LogIn from './views/LogIn';
+import Sign from './views/SignIn';
 import NotFound from './views/NotFound';
 
 export default function Routes() {
   return (
     <Router>
-      <div>
-        <div id="wrapper">
-          <NavBar />
-
-          <body>
-            <Switch>
-              <Route path="/auth" component={Auth} />
-              <Route path="/books/:id" component={BookDetail} />
-              <Route path="/books" component={Books} />
-              <Route path="/authors/:id" component={AuthorDetail} />
-              <Route path="/authors" component={AuthorList} />
-              <Route exact path="/" component={Home} />
-              <Route component={NotFound} />
-            </Switch>
-          </body>
-        </div>
-        <Footer />
-      </div>
+      <NavBar />
+      <Switch>
+        <Route path="/login" component={LogIn} />
+        <Route path="/signin" component={Sign} />
+        <Route path="/books/:id" component={BookDetail} />
+        <Route path="/books" component={Books} />
+        <Route path="/authors/:id" component={AuthorDetail} />
+        <Route path="/authors" component={AuthorList} />
+        <Route exact path="/" component={Home} />
+        <Route component={NotFound} />
+      </Switch>
+      <Footer />
     </Router>
   );
 }
