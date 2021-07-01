@@ -40,7 +40,7 @@ export default function NavBar() {
                     {' '}
                     <FaUserAlt />
                   </Link>
-                  <Link to="/wenlo420" className="navbar-item" onClick={(event) => { event.target.blur(); }}>
+                  <Link to="/NotImplementedYet" className="navbar-item" onClick={(event) => { event.target.blur(); }}>
                     Log Out
                     {' '}
                     {' '}
@@ -52,7 +52,7 @@ export default function NavBar() {
 
             {/* <?php else: ?> */}
             <Link to="/login" className="navbar-item">Login</Link>
-            <a className="navbar-item" href="/~grupo18/register.php">Registrarme</a>
+            <Link to="/signin" className="navbar-item">Signin</Link>
             {/* <?php endif ?> */}
           </div>
         </div>

@@ -41,7 +41,7 @@ export default function LogIn() {
                   </label>
                 </div>
                 <div className="field">
-                  <button className="button is-success">
+                  <button className="button is-success" type="submit">
                     Login
                   </button>
                 </div>

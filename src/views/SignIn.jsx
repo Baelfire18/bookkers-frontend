@@ -13,9 +13,8 @@ export default function SigIn() {
           <div className="columns is-centered">
             <div className="column is-5-tablet is-4-desktop is-3-widescreen">
               <form action="" className="box">
-
                 <div className="field">
-                  <label htmlFor="" className="label">Email</label>
+                  <label htmlFor="Email" className="label">Email</label>
                   <div className="control has-icons-left">
                     <input type="email" placeholder="cacu@ql.cl" className="input" required />
                     <span className="icon is-small is-left">
@@ -69,7 +68,7 @@ export default function SigIn() {
                 </div>
                 <br />
                 <div className="field">
-                  <button className="button is-success">
+                  <button className="button is-success" type="submit">
                     Signin
                   </button>
                 </div>

@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './views/Home';
-import AuthorList from './views/AuthorList';
-import AuthorDetail from './views/AuthorDetail';
+// import AuthorList from './views/AuthorList';
+// import AuthorDetail from './views/AuthorDetail';
 import Books from './views/BookList';
 import BookDetail from './views/BookDetail';
 import NavBar from './components/NavBar';
@@ -23,8 +23,8 @@ export default function Routes() {
         <Route path="/signin" component={Sign} />
         <Route path="/books/:id" component={BookDetail} />
         <Route path="/books" component={Books} />
-        <Route path="/authors/:id" component={AuthorDetail} />
-        <Route path="/authors" component={AuthorList} />
+        {/* <Route path="/authors/:id" component={AuthorDetail} />
+        <Route path="/authors" component={AuthorList} /> */}
         <Route exact path="/" component={Home} />
         <Route component={NotFound} />
       </Switch>

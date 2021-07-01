@@ -7,8 +7,8 @@ export default function Comment() {
     <section className="section is-small">
       <div className="card">
         <div className="card-content">
-          <SingleComment />
-          <SingleComment />
+          <SingleComment key={1} reviewId={1}/>
+          <SingleComment key={2} reviewId={2}/>
           <CreateComment />
         </div>
       </div>
