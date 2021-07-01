@@ -22,8 +22,9 @@ export default function NavBar() {
         <div id="navMenuColorblack-example" className={`navbar-menu ${isActive ? 'is-active' : ''}`}>
           <div className="navbar-end">
             <Link to="/" className="navbar-item">Home</Link>
-            <Link to="/authors/1" className="navbar-item">MyProfile</Link>
+            <Link to="/users/1" className="navbar-item">MyProfile</Link>
             <Link to="/books" className="navbar-item">Books</Link>
+            <a href="https://github.com/IIC2513-2021-1/grupo-demaciagang-p2-frontend" target="_blanck" className="navbar-item"> About Us</a>
             <a className="navbar-item" href="/chileNecesitaAJoseAntonioKast">
               <img src="https://cdn.pixabay.com/photo/2013/07/12/17/50/bookmark-152545_960_720.png" width="40" height="80" className="d-inline-block align-top" alt="\" />
             </a>
@@ -33,7 +34,7 @@ export default function NavBar() {
               <p className="navbar-link">
                 Humberto Ortuzar
                 <div className="navbar-dropdown">
-                  <Link to="/authors/1" className="navbar-item" onClick={(event) => { event.target.blur(); }}>
+                  <Link to="/users/1" className="navbar-item" onClick={(event) => { event.target.blur(); }}>
                     Profile
                     {' '}
                     {' '}

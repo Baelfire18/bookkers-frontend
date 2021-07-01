@@ -11,7 +11,7 @@ export default function LogIn() {
           <div className="columns is-centered">
             <div className="column is-5-tablet is-4-desktop is-3-widescreen">
               <form action="" className="box">
-                
+
                 <div className="field">
                   <label htmlFor="" className="label">Email</label>
                   <div className="control has-icons-left  has-icons-right">

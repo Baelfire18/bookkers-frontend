@@ -6,7 +6,8 @@ export default function SingleBook(prop) {
   const { bookId, title, img } = book;
   return (
     <div className="SingleBook">
-      {/* <h3><Link to={`/books/${bookId}`} className="subtitle is-3 has-text-grey-light">{title}</Link></h3> */}
+      {/* <h3><Link to={`/books/${bookId}`} className="subtitle is-3 has-text-grey-light">
+      {title}</Link></h3> */}
       {/* <img className="book-image" alt="book" src={img} /> */}
       <div className="card">
         <div className="card-image">

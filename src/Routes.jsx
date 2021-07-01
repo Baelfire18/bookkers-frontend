@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 // import SingleBook from './components/SingleBook';
 import LogIn from './views/LogIn';
 import Sign from './views/SignIn';
+import User from './views/User';
 import NotFound from './views/NotFound';
 
 export default function Routes() {
@@ -17,6 +18,7 @@ export default function Routes() {
     <Router>
       <NavBar />
       <Switch>
+        <Route path="/users/:id" component={User} />
         <Route path="/login" component={LogIn} />
         <Route path="/signin" component={Sign} />
         <Route path="/books/:id" component={BookDetail} />
