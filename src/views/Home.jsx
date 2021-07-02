@@ -9,10 +9,14 @@ export default function Home() {
         <ul><Link to="/books">Books</Link></ul>
       </div> */}
 
-<div className="notification is-danger">
-  <button className="delete"></button>
-  <strong>Advertencia</strong> Están de baja estas vistas (sorry) :(
-</div>
+      <div className="notification is-danger">
+        <button className="delete" />
+        <strong>Warning!!</strong>
+        {' '}
+        <br />
+        {' '}
+        Están de baja estas vistas (sorry) :(
+      </div>
       <div className="buttons">
         <button className="button is-primary" type="submit">Primary</button>
         <button className="button is-link" type="submit">Link</button>

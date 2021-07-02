@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function CreateComment() {
+export default function CreateReview() {
   return (
     <article className="media">
       <figure className="media-left">
@@ -11,12 +11,12 @@ export default function CreateComment() {
       <div className="media-content">
         <div className="field">
           <p className="control">
-            <textarea className="textarea" placeholder="Add a comment..." />
+            <textarea className="textarea" placeholder="Add a Review..." />
           </p>
         </div>
         <div className="field">
           <p className="control">
-            <button className="button" id="CreateReview" type="submit">Post comment</button>
+            <button className="button" id="CreateReview" type="submit">Post Review</button>
           </p>
         </div>
       </div>

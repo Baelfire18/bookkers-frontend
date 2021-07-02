@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import SingleBook from '../components/SingleBook';
 import bookArray from '../seeds/books';
 
+/* eslint-disable  */
 export default function User() {
   const { id } = useParams();
   return (
@@ -91,7 +92,7 @@ export default function User() {
               </div>
               <div className="column is-4-tablet is-10-mobile name">
                 <p>
-                  <span className="title is-bold">Paul Miller</span>
+                  <span className="title is-bold">Humberto Ortuzar</span>
                   <br />
                   <a className="button is-primary is-outlined" href="#" id="edit-preferences">
                     Edit Preferences

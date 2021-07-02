@@ -2,7 +2,7 @@ import React from 'react';
 import { FcLike } from '@react-icons/all-files/fc/FcLike';
 import SingleReport from './SingleReport';
 
-export default function SingleComment(prop) {
+export default function SingleReview(prop) {
   const { reviewId } = prop;
   return (
     <article className="media">
@@ -21,7 +21,7 @@ export default function SingleComment(prop) {
             Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in tempus turpis.
             <br />
             <small>
-              <a href={`#${reviewId}`} >
+              <a href={`#${reviewId}`}>
                 4
                 {' '}
                 <FcLike />

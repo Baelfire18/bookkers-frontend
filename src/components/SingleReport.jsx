@@ -5,7 +5,7 @@ export default function SingleReport() {
     <article className="media">
       <figure className="media-left">
         <p className="image is-48x48">
-          <img src="https://www.alohacriticon.com/wp-content/uploads/2015/11/taylor-lautner-en-crepusculo-fotos.jpg" alt="/" />
+          <img src="https://pbs.twimg.com/profile_images/1244650027974365189/4wjOJGlH.jpg" alt="/" />
         </p>
       </figure>
       <div className="media-content">
