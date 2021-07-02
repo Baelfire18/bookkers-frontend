@@ -1,7 +1,7 @@
 import React from 'react';
-import { FaRegEnvelope } from '../../node_modules/@react-icons/all-files/fa/FaRegEnvelope';
-import { AiFillLock } from '../../node_modules/@react-icons/all-files/ai/AiFillLock';
-import { FcCheckmark } from '../../node_modules/@react-icons/all-files/fc/FcCheckmark';
+import { FaRegEnvelope } from '@react-icons/all-files/fa/FaRegEnvelope';
+import { AiFillLock } from '@react-icons/all-files/ai/AiFillLock';
+import { FcCheckmark } from '@react-icons/all-files/fc/FcCheckmark';
 
 /* eslint-disable  */
 export default function LogIn() {

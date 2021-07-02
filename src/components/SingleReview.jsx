@@ -1,5 +1,5 @@
 import React from 'react';
-import { FcLike } from '../../node_modules/@react-icons/all-files/fc/FcLike';
+import { FcLike } from '@react-icons/all-files/fc/FcLike';
 import SingleReport from './SingleReport';
 
 export default function SingleReview(prop) {
