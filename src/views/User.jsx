@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import SingleBook from '../components/SingleBook';
 import bookArray from '../seeds/books';
 
-/* eslint-disable  */
 export default function User() {
   const { id } = useParams();
   return (
@@ -15,7 +14,7 @@ export default function User() {
             <div className="modal-card">
               <header className="modal-card-head">
                 <p className="modal-card-title">Edit Preferences</p>
-                <button className="delete" />
+                <button className="delete" type="submit" />
               </header>
               <section className="modal-card-body">
                 <label className="label">Name</label>
@@ -78,8 +77,8 @@ export default function User() {
                 </p>
               </section>
               <footer className="modal-card-foot">
-                <a className="button is-primary modal-save">Save changes</a>
-                <a className="button modal-cancel">Cancel</a>
+                <a href="#userBook" className="button is-primary modal-save">Save changes</a>
+                <a href="#userBook" className="button modal-cancel">Cancel</a>
               </footer>
             </div>
           </div>
@@ -87,20 +86,22 @@ export default function User() {
             <div className="columns is-mobile is-multiline">
               <div className="column is-2">
                 <span className="header-icon user-profile-image">
-                  <img alt="" src="http://placehold.it/300x225" />
+                  <img alt="" src="https://i0.wp.com/hipertextual.com/wp-content/uploads/2019/08/hipertextual-se-confirma-serie-obi-wan-kenobi-con-ewan-mcgregor-disney-2019892534-scaled.jpg?fit=2560%2C1707&ssl=1" />
                 </span>
               </div>
               <div className="column is-4-tablet is-10-mobile name">
                 <p>
                   <span className="title is-bold">Humberto Ortuzar</span>
                   <br />
-                  <a className="button is-primary is-outlined" href="#" id="edit-preferences">
+                  <a className="button is-primary is-outlined" href="#userBook" id="edit-preferences">
                     Edit Preferences
                   </a>
                   <br />
                 </p>
                 <p className="tagline">
-                  The users profile bio would go here, of course. It could be two lines or more or whatever. We should probably limit the amount of characters to ~500 at most though.
+                  The users profile bio would go here, of course.
+                  It could be two lines or more or whatever.
+                  We should probably limit the amount of characters to ~500 at most though.
                 </p>
               </div>
               <div className="column is-2-tablet is-4-mobile has-text-centered">
@@ -121,22 +122,22 @@ export default function User() {
             <div className="tabs is-fullwidth is-medium">
               <ul>
                 <li className="link">
-                  <a>
+                  <a href="/users/1">
                     <span>My Lists</span>
                   </a>
                 </li>
                 <li className="link is-active">
-                  <a>
+                  <a href="/users/1">
                     <span>My Books</span>
                   </a>
                 </li>
                 <li className="link">
-                  <a>
+                  <a href="/users/1">
                     <span>My Searches</span>
                   </a>
                 </li>
                 <li className="link">
-                  <a>
+                  <a href="/users/1">
                     <span>Compare</span>
                   </a>
                 </li>
@@ -157,7 +158,7 @@ export default function User() {
               <div className="column is-8">
                 <p className="control has-addons">
                   <input className="input" placeholder="Search your liked properties" type="text" />
-                  <button className="button">
+                  <button className="button" type="submit">
                     Search
                   </button>
                 </p>
@@ -165,7 +166,7 @@ export default function User() {
             </div>
           </div>
 
-          <ul className="BookList">
+          <ul className="BookList" id="userBook">
             {bookArray.map((book) => (
               <SingleBook key={book.bookId} book={book} />
             ))}

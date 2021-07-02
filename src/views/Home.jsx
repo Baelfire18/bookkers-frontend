@@ -10,13 +10,15 @@ export default function Home() {
       </div> */}
 
       <div className="notification is-danger">
-        <button className="delete" />
+        <button className="delete" type="submit" />
         <strong>Warning!!</strong>
         {' '}
         <br />
         {' '}
         Están de baja estas vistas (sorry) :(
       </div>
+
+      <img alt="" src="https://i.ytimg.com/vi/6Z0lStsM6pA/maxresdefault.jpg" />
       <div className="buttons">
         <button className="button is-primary" type="submit">Primary</button>
         <button className="button is-link" type="submit">Link</button>

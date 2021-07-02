@@ -1,7 +1,7 @@
 # Grupo-demaciagang-p2-frontend
 
 ## Bookkers React App 
-[Netlify link](https://vibrant-mirzakhani-581a65.netlify.app/).
+[Netlify link](https://vibrant-mirzakhani-581a65.netlify.app/)
 
 ## Campeones
 | Nombre | Email |
