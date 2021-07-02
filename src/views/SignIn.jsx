@@ -5,6 +5,7 @@ import { FiUpload } from '@react-icons/all-files/fi/FiUpload';
 import { GiClown } from '@react-icons/all-files/gi/GiClown';
 import { BsFillPersonFill } from '@react-icons/all-files/bs/BsFillPersonFill';
 
+/* eslint-disable  */
 export default function SigIn() {
   return (
     <section className="hero is-success is-fullheight">

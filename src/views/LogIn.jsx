@@ -3,6 +3,7 @@ import { FaRegEnvelope } from '@react-icons/all-files/fa/FaRegEnvelope';
 import { AiFillLock } from '@react-icons/all-files/ai/AiFillLock';
 import { FcCheckmark } from '@react-icons/all-files/fc/FcCheckmark';
 
+/* eslint-disable  */
 export default function LogIn() {
   return (
     <section className="hero is-success is-fullheight">
