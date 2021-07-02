@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaUserAlt } from '@react-icons/all-files/fa/FaUserAlt';
-import { FaPowerOff } from '@react-icons/all-files/fa/FaPowerOff';
+import { FaUserAlt } from '../../node_modules/@react-icons/all-files/fa/FaUserAlt';
+import { FaPowerOff } from '../../node_modules/@react-icons/all-files/fa/FaPowerOff';
 
 export default function NavBar() {
   const [isActive, setisActive] = React.useState(false);

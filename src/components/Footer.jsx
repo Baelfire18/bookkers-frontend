@@ -1,5 +1,5 @@
 import React from 'react';
-import { AiOutlineInstagram } from '@react-icons//all-files/ai/AiOutlineInstagram';
+import { AiOutlineInstagram } from '../../node_modules/@react-icons//all-files/ai/AiOutlineInstagram';
 
 export default function Footer() {
   return (

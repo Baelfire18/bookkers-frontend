@@ -1,9 +1,9 @@
 import React from 'react';
-import { FaRegEnvelope } from '@react-icons/all-files/fa/FaRegEnvelope';
-import { AiFillLock } from '@react-icons/all-files/ai/AiFillLock';
-import { FiUpload } from '@react-icons/all-files/fi/FiUpload';
-import { GiClown } from '@react-icons/all-files/gi/GiClown';
-import { BsFillPersonFill } from '@react-icons/all-files/bs/BsFillPersonFill';
+import { FaRegEnvelope } from '../../node_modules/@react-icons/all-files/fa/FaRegEnvelope';
+import { AiFillLock } from '../../node_modules/@react-icons/all-files/ai/AiFillLock';
+import { FiUpload } from '../../node_modules/@react-icons/all-files/fi/FiUpload';
+import { GiClown } from '../../node_modules/@react-icons/all-files/gi/GiClown';
+import { BsFillPersonFill } from '../../node_modules/@react-icons/all-files/bs/BsFillPersonFill';
 
 /* eslint-disable  */
 export default function SigIn() {
