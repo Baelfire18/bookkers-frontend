@@ -36,3 +36,30 @@
     transform: rotate(360deg);
   }
 }
+
+/* body {
+  display: flex;
+  min-height: 90vh;
+  flex-direction: column;
+}
+
+
+#wrapper {
+  flex: 1;
+} */
+footer {
+  position: relative;
+  left: 0;
+  bottom: 0;
+  height: auto;
+  width: 100%;
+  background: rgb(112, 128, 144);
+  text-align: center;
+  bottom: 0;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+}
