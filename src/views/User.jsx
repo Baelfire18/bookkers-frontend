@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import SingleBook from '../components/SingleBook';
 import bookArray from '../seeds/books';
 
-/* eslint-disable  */
 export default function User() {
   const { id } = useParams();
   return (
