@@ -169,7 +169,7 @@ export default function User() {
 
           <ul className="BookList" id="userBook">
             {bookArray.map((book) => (
-              <SingleBook key={book.bookId} book={book} />
+              <SingleBook key={book.id} book={book} />
             ))}
           </ul>
 

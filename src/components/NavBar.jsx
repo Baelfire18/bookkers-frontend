@@ -2,8 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaUserAlt } from '@react-icons/all-files/fa/FaUserAlt';
 import { FaPowerOff } from '@react-icons/all-files/fa/FaPowerOff';
+import useAuth from '../hooks/useAuth';
 
 export default function NavBar() {
+  const { currentUser, handleUserLogout } = useAuth();
   const [isActive, setisActive] = React.useState(false);
 
   return (
@@ -29,31 +31,33 @@ export default function NavBar() {
               <img src="https://cdn.pixabay.com/photo/2013/07/12/17/50/bookmark-152545_960_720.png" width="40" height="80" className="d-inline-block align-top" alt="\" />
             </a>
 
-            {/* <?php if ($_SESSION['name']): ?> */}
-            <div className="navbar-item has-dropdown is-hoverable">
-              <p className="navbar-link">
-                Humberto Ortuzar
-                <div className="navbar-dropdown">
-                  <Link to="/users/1" className="navbar-item" onClick={(event) => { event.target.blur(); }}>
-                    Profile
-                    {' '}
-                    {' '}
-                    <FaUserAlt />
-                  </Link>
-                  <Link to="/NotImplementedYet" className="navbar-item" onClick={(event) => { event.target.blur(); }}>
-                    Log Out
-                    {' '}
-                    {' '}
-                    <FaPowerOff />
-                  </Link>
-                </div>
-              </p>
-            </div>
+            { currentUser ? (
+              <div className="navbar-item has-dropdown is-hoverable">
+                <p className="navbar-link">
+                  {currentUser.firstName}
+                  <div className="navbar-dropdown">
+                    <Link to="/users/1" className="navbar-item" onClick={(event) => { event.target.blur(); }}>
+                      Profile
+                      {' '}
+                      {' '}
+                      <FaUserAlt />
+                    </Link>
+                    <a className="navbar-item" type="button" onClick={handleUserLogout}>
+                      Log Out
+                      {' '}
+                      {' '}
+                      <FaPowerOff />
+                    </a>
+                  </div>
+                </p>
+              </div>
 
-            {/* <?php else: ?> */}
-            <Link to="/login" className="navbar-item">Login</Link>
-            <Link to="/signin" className="navbar-item">Signin</Link>
-            {/* <?php endif ?> */}
+            ) : (
+              <>
+                <Link to="/login" className="navbar-item">Log In</Link>
+                <Link to="/signin" className="navbar-item">Sign In</Link>
+              </>
+            )}
           </div>
         </div>
       </div>

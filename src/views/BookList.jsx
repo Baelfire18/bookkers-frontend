@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Deserializer } from 'jsonapi-serializer';
 import SingleBook from '../components/SingleBook';
-import bookArray from '../seeds/books';
 import '../styles/books.css';
 
 function Books() {
@@ -8,22 +8,44 @@ function Books() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  // useEffect(() =>
-  // setLoading(true);
-  // fetch()
-  // )
+  useEffect(() => {
+    setLoading(true);
+    fetch(`${process.env.REACT_APP_API_URL}/books`)
+      .then((response) => {
+        if (response.status !== 200) {
+          setError(true);
+          return [];
+        }
+        return response.json();
+      })
+      .then((data) => {
+        new Deserializer({ keyForAttribute: 'camelCase' }).deserialize(data, (_error, booksData) => setBooks(booksData));
+      })
+      .catch(() => setError(true))
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) {
+    return <h2>Loading...</h2>;
+  }
 
   return (
     <div className="Books">
-      <div className="Title">
-        <h1>Books</h1>
-      </div>
+      {error ? (
+        <h2>Something went wrong, please try again later</h2>
+      ) : (
+        <div>
+          <div className="Title">
+            <h1>Books</h1>
+          </div>
 
-      <ul className="BookList">
-        {bookArray.map((book) => (
-          <SingleBook key={book.bookId} book={book} />
-        ))}
-      </ul>
+          <ul className="BookList">
+            {books.map((book) => (
+              <SingleBook key={book.id} book={book} />
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
