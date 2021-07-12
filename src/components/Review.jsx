@@ -13,17 +13,18 @@ export default function Review() {
   const [reviews, setReviews] = useState([]);
   const { currentUser } = useAuth();
 
-  const handleAddReview = (review, completed = false) => {
+  const handleAddReview = (review) => {
     setReviews((prevReviews) => [
       ...prevReviews,
       {
-        id: review.attributes.id,
-        content: review.attributes.content,
-        score: review.attributes.score,
-        userId: review.attributes.userId,
-        bookId: review.attributes.bookId,
-      },
+        content: review["attributes"].content,
+        score: review["attributes"].score,
+        userId: review["attributes"].userId,
+        bookId: review["attributes"].bookId,
+        id: review.id,
+      }
     ]);
+    if (error) setError(false);
   };
 
   useEffect(() => {
