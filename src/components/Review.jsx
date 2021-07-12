@@ -17,12 +17,12 @@ export default function Review() {
     setReviews((prevReviews) => [
       ...prevReviews,
       {
-        content: review["attributes"].content,
-        score: review["attributes"].score,
-        userId: review["attributes"].userId,
-        bookId: review["attributes"].bookId,
+        content: review.attributes.content,
+        score: review.attributes.score,
+        userId: review.attributes.userId,
+        bookId: review.attributes.bookId,
         id: review.id,
-      }
+      },
     ]);
     if (error) setError(false);
   };

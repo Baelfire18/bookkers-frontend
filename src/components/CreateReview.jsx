@@ -1,17 +1,17 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { useParams } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 
 export default function CreateReview({ onAdd }) {
   const { id } = useParams();
-  const { currentUser, handleUserLogout } = useAuth();
+  const { currentUser } = useAuth();
   const [message, setMessage] = useState('');
 
   const initialValues = {
     content: '',
-    score: 5
-  }
+    score: 5,
+  };
 
   const handleSubmit = async (values, actions) => {
     const formData = new FormData();
@@ -40,32 +40,35 @@ export default function CreateReview({ onAdd }) {
   };
 
   return (
-    <Formik enableReinitialize onSubmit={handleSubmit} initialValues={initialValues}>
-      <Form className="media">
-        <figure className="media-left">
-          <p className="image is-64x64">
-            <img src={currentUser.imageUrl} alt="/" />
-          </p>
-        </figure>
-        <div className="media-content">
-          <div className="field">
-            <p className="control">
-              <Field
-                type="text"
-                name="content"
-                placeholder="Add your review..."
-                className="textarea"
-              />
+    <>
+      <Formik enableReinitialize onSubmit={handleSubmit} initialValues={initialValues}>
+        <Form className="media">
+          <figure className="media-left">
+            <p className="image is-64x64">
+              <img src={currentUser.imageUrl} alt="/" />
             </p>
+          </figure>
+          <div className="media-content">
+            <div className="field">
+              <p className="control">
+                <Field
+                  type="text"
+                  name="content"
+                  placeholder="Add your review..."
+                  className="textarea"
+                />
+              </p>
+            </div>
+            <div className="field">
+              <p className="control">
+                <button className="button" id="CreateReview" type="submit">Post Review</button>
+              </p>
+            </div>
           </div>
-          <div className="field">
-            <p className="control">
-              <button className="button" id="CreateReview" type="submit">Post Review</button>
-            </p>
-          </div>
-        </div>
-      </Form>
+        </Form>
 
-    </Formik>
+      </Formik>
+      <p>{message}</p>
+    </>
   );
 }

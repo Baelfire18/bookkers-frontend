@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { FaRegEnvelope } from '@react-icons/all-files/fa/FaRegEnvelope';
@@ -13,7 +13,7 @@ export default function BookNew() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const { currentUser } = useAuth();
-
+  const history = useHistory();
   if (!currentUser) {
     return (<Redirect to="/login" />);
   }
@@ -80,8 +80,9 @@ export default function BookNew() {
                       const error = await response.text();
                       throw new Error(error);
                     }
+                    const thisNewBook = await response.json();
                     setMessage('Books has been sucesesfully created');
-                      <Redirect to="/books" />;
+                    history.push(`/books/${thisNewBook.data.id}`);
                   } catch (error) {
                     setMessage(error.message);
                   } finally {

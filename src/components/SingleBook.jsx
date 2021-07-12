@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Deserializer } from 'jsonapi-serializer';
 import useAuth from '../hooks/useAuth';
+import OptionBook from './OptionsBook';
 
 export default function SingleBook(prop) {
   const { book } = prop;
@@ -27,14 +27,7 @@ export default function SingleBook(prop) {
           <br />
           {location.pathname.includes(`books/${id}`) ? (
             <div className="content">
-              {currentUser ? (
-                <p>
-                  {' '}
-                  {'Book uploaded by '}
-                  {' '}
-                  <br />
-                </p>
-              ) : <> </>}
+
               {description}
               <br />
               <p>
@@ -44,7 +37,15 @@ export default function SingleBook(prop) {
               </p>
               <a href="/HumbertoAmaElResponsive">#Humberto Ama El Responsive</a>
               <br />
-
+              {currentUser ? (
+                <p>
+                  {' '}
+                  {'Book uploaded by '}
+                  <OptionBook key={book.id} book={book} />
+                  {' '}
+                  <br />
+                </p>
+              ) : <> </>}
             </div>
           ) : (<> </>) }
         </div>
