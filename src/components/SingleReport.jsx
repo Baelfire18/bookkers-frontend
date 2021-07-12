@@ -5,7 +5,7 @@ export default function SingleReport() {
     <article className="media">
       <figure className="media-left">
         <p className="image is-48x48">
-          <img src="https://pbs.twimg.com/profile_images/1244650027974365189/4wjOJGlH.jpg" alt="/" />
+          <img src="https://i.ytimg.com/vi/f97Ibo9oYuM/hqdefault.jpg" alt="/" />
         </p>
       </figure>
       <div className="media-content">

@@ -2,8 +2,13 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import SingleBook from '../components/SingleBook';
 import bookArray from '../seeds/books';
+import useAuth from '../hooks/useAuth';
+import { current } from 'immer';
 
 export default function User() {
+
+  const { currentUser, handleUserLogout } = useAuth();
+
   const { id } = useParams();
   return (
     <section>
@@ -86,12 +91,12 @@ export default function User() {
             <div className="columns is-mobile is-multiline">
               <div className="column is-2">
                 <span className="header-icon user-profile-image">
-                  <img alt="" src="https://i0.wp.com/hipertextual.com/wp-content/uploads/2019/08/hipertextual-se-confirma-serie-obi-wan-kenobi-con-ewan-mcgregor-disney-2019892534-scaled.jpg?fit=2560%2C1707&ssl=1" />
+                  <img alt="" src={currentUser.imageUrl} />
                 </span>
               </div>
               <div className="column is-4-tablet is-10-mobile name">
                 <p>
-                  <span className="title is-bold">Humberto Ortuzar</span>
+                  <span className="title is-bold">{currentUser.firstName} {currentUser.lastName}</span>
                   <br />
                   <a className="button is-primary is-outlined" href="#userBook" id="edit-preferences">
                     Edit Preferences
