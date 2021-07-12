@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Deserializer } from 'jsonapi-serializer';
 import SingleReview from './SingleReview';
 import CreateReview from './CreateReview';
+import useAuth from '../hooks/useAuth';
 
 export default function Review() {
   const { id } = useParams();
@@ -10,6 +11,7 @@ export default function Review() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [reviews, setReviews] = useState([]);
+  const { currentUser, handleUserLogout } = useAuth();
 
   useEffect(() => {
     setLoading(true);
@@ -29,6 +31,10 @@ export default function Review() {
       .catch(() => setError(true))
       .finally(() => setLoading(false));
   }, []);
+
+  if (!currentUser) {
+    return (<h2>Log in to see the reviews</h2>)
+  }
 
   return (
     <section className="section is-small">
