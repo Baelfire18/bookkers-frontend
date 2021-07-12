@@ -8,7 +8,8 @@ import useAuth from '../hooks/useAuth';
 export default function SingleReview(prop) {
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState([]);
-  const { currentUser } = useAuth();
+  const [error, setError] = useState('');
+  const { currentUser, handleUserLogout } = useAuth();
 
   const { review } = prop;
   const {

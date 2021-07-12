@@ -155,7 +155,7 @@ export default function BookNew() {
                       <label htmlFor="description" className="label">
                         Description
                         <div className="control has-icons-left">
-                          <Field type="text" name="description" className="input" placeholder="Noice" />
+                          <Field type="text" name="description" className="textarea" placeholder="Noice" />
                           {errors.description && touched.description ? (
                             <div>{errors.description}</div>
                           ) : null}

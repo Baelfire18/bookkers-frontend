@@ -13,6 +13,19 @@ export default function Review() {
   const [reviews, setReviews] = useState([]);
   const { currentUser } = useAuth();
 
+  const handleAddReview = (review, completed = false) => {
+    setReviews((prevReviews) => [
+      ...prevReviews,
+      {
+        id: review.attributes.id,
+        content: review.attributes.content,
+        score: review.attributes.score,
+        userId: review.attributes.userId,
+        bookId: review.attributes.bookId,
+      },
+    ]);
+  };
+
   useEffect(() => {
     setLoading(true);
     fetch(`${process.env.REACT_APP_API_URL}/books/${id}/reviews`)
@@ -52,7 +65,7 @@ export default function Review() {
               ))}
             </>
           )}
-          <CreateReview />
+          <CreateReview onAdd={handleAddReview} />
         </div>
       </div>
     </section>
