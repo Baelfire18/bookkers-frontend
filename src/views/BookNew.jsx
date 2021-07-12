@@ -76,7 +76,7 @@ export default function BookNew() {
                       throw new Error(error);
                     }
                     setMessage('Books has been sucesesfully created');
-                    return <Redirect to="/books" />
+                    return <Redirect to="/books" />;
                   } catch (error) {
                     setMessage(error.message);
                   } finally {
