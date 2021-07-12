@@ -3,7 +3,10 @@ import { FcLike } from '@react-icons/all-files/fc/FcLike';
 import SingleReport from './SingleReport';
 
 export default function SingleReview(prop) {
-  const { reviewId } = prop;
+  const { review } = prop;
+  const {
+    content, score, reviewId, bookId, userId,
+  } = review;
   return (
     <article className="media">
       <figure className="media-left">
@@ -16,13 +19,11 @@ export default function SingleReview(prop) {
           <p>
             <strong id={`${reviewId}`}>Bastian Hilcker</strong>
             <br />
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Duis porta eros lacus, nec ultricies elit blandit non.
-            Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in tempus turpis.
+            {content}
             <br />
             <small>
               <a href={`#${reviewId}`}>
-                4
+                {score}
                 {' '}
                 <FcLike />
                 {' '}

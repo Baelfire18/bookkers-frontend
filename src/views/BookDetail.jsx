@@ -9,6 +9,7 @@ export default function BookDetail() {
   // const { bookId, title, img } = bookArray[id - 1];
   // const book = bookArray[id - 1];
   const [book, setBook] = useState([]);
+  const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   // console.log((`${process.env.REACT_APP_API_URL}/books/${id}`));

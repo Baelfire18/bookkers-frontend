@@ -1,14 +1,51 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { Deserializer } from 'jsonapi-serializer';
 import SingleReview from './SingleReview';
 import CreateReview from './CreateReview';
 
 export default function Review() {
+  const { id } = useParams();
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch(`${process.env.REACT_APP_API_URL}/books/${id}/reviews`)
+      .then((response) => {
+        if (response.status !== 200 && response.status !== 204) {
+          setError(true);
+          return {};
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data.length != 0) {
+          new Deserializer({ keyForAttribute: 'camelCase' }).deserialize(data, (_error, reviewsData) => setReviews(reviewsData));
+        }
+      })
+      .catch(() => setError(true))
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
     <section className="section is-small">
       <div className="card">
         <div className="card-content">
-          <SingleReview key={1} reviewId={1} />
-          <SingleReview key={2} reviewId={2} />
+          {error ? (
+            <h2>
+              There are no reviews yet for this book :(
+              {error}
+            </h2>
+          ) : (
+            <>
+              {reviews.map((review) => (
+                <SingleReview key={review.id} review={review} />
+              ))}
+            </>
+          )}
           <CreateReview />
         </div>
       </div>
