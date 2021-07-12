@@ -10,7 +10,7 @@ import { GiClown } from '@react-icons/all-files/gi/GiClown';
 import { BsFillPersonFill } from '@react-icons/all-files/bs/BsFillPersonFill';
 import useAuth from '../hooks/useAuth';
 
-export default function SigIn() {
+export default function SignUp() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const { currentUser, handleUserLogin } = useAuth();

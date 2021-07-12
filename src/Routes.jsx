@@ -7,7 +7,7 @@ import BookDetail from './views/BookDetail';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import LogIn from './views/LogIn';
-import SigIn from './views/SignIn';
+import SignUp from './views/SignUp';
 import User from './views/User';
 import NotFound from './views/NotFound';
 import AuthContextProvider from './contexts/AuthContext';
@@ -20,7 +20,7 @@ export default function Routes() {
         <Switch>
           <Route path="/users/:id" component={User} />
           <Route path="/login" component={LogIn} />
-          <Route path="/signin" component={SigIn} />
+          <Route path="/signup" component={SignUp} />
           <Route path="/books/new" component={BookNew} />
           <Route path="/books/:id" component={BookDetail} />
           <Route path="/books" component={Books} />

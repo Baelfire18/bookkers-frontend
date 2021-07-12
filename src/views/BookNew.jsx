@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { FaRegEnvelope } from '@react-icons/all-files/fa/FaRegEnvelope';
@@ -12,6 +13,10 @@ export default function BookNew() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const { currentUser, handleUserLogout } = useAuth();
+
+  if (!currentUser) {
+    return (<Redirect to="/login" />);
+  }
 
   if (loading) {
     return <h2>Loading...</h2>;
