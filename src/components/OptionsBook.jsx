@@ -75,7 +75,23 @@ export default function OptionBook(prop) {
           { currentUser.admin || currentUser.id === userId ? (
             <div className="field">
               <p className="control">
-                <Link to={`/books/${id}/edit`} className="button is-primary" id="EditBook">Edit Book</Link>
+                <Link
+                  to={{
+                    pathname: `/books/${id}/edit`,
+                    query: {
+                      title: book.title,
+                      description: book.description,
+                      imageUrl: book.imageUrl,
+                      genre: book.genre,
+                      author: book.author,
+                      isbn: book.isbn,
+                    },
+                  }}
+                  className="button is-primary"
+                  id="EditBook"
+                >
+                  Edit Book
+                </Link>
               </p>
             </div>
           ) : (
