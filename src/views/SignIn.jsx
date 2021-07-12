@@ -9,6 +9,9 @@ import { GiClown } from '@react-icons/all-files/gi/GiClown';
 import { BsFillPersonFill } from '@react-icons/all-files/bs/BsFillPersonFill';
 
 export default function SigIn() {
+
+  
+
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
@@ -29,6 +32,7 @@ export default function SigIn() {
                   email: '',
                   password: '',
                   passwordConfirmation: '',
+                  file: '',
                   acceptedTerms: false,
                 }}
                 validationSchema={Yup.object({
@@ -56,10 +60,21 @@ export default function SigIn() {
                 })}
                 onSubmit={async (values) => {
                   setLoading(true);
+                  let formData = new FormData();
+                  formData.append("firstName", values.firstName);
+                  formData.append("lastName", values.lastName);
+                  formData.append("email", values.email);
+                  formData.append("password", values.password);
+                  formData.append("passwordConfirmation", values.passwordConfirmation);
+                  formData.append("image", values.file);
+                  formData.append("acceptedTerms", values.acceptedTerms);
+                  console.log(values);
                   const requestOptions = {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(values),
+                    headers: new Headers({
+                      Accept: "application/json",
+                    }),
+                    body: formData,
                   };
                   try {
                     const response = await fetch(`${process.env.REACT_APP_API_URL}/users`, requestOptions);
@@ -75,7 +90,7 @@ export default function SigIn() {
                   }
                 }}
               >
-                {({ errors, touched }) => (
+                {({ errors, touched, setFieldValue}) => (
                   <Form className="box">
                     <div className="field">
                       <label htmlFor="Email" className="label">Email</label>
@@ -144,7 +159,9 @@ export default function SigIn() {
 
                     <div className="file">
                       <label className="file-label">
-                        <input className="file-input" type="file" name="resume" />
+                        <input className="file-input" type="file" name="resume" onChange={event => {
+                          setFieldValue("file", event.currentTarget.files[0]);
+                        }} />
                         <span className="file-cta">
                           <span className="file-icon">
                             <FiUpload />
