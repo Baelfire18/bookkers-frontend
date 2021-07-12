@@ -2,7 +2,6 @@ import React, { useState, useRef } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { useParams } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
-import { trueFunc } from 'boolbase';
 
 export default function CreateReview({ onAdd }) {
 
@@ -10,16 +9,14 @@ export default function CreateReview({ onAdd }) {
 
   const { id } = useParams();
   const { currentUser, handleUserLogout } = useAuth();
+  const [message, setMessage] = useState('');
 
   const initialValues = {
     content: '',
     score: 5
   }
 
-
-
   const handleSubmit = async (values, actions) => {
-    console.log(values);
     const formData = new FormData();
     formData.append('content', values.content);
     formData.append('score', values.score);
