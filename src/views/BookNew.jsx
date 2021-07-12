@@ -1,84 +1,82 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-
 import { FaRegEnvelope } from '@react-icons/all-files/fa/FaRegEnvelope';
 import { AiFillLock } from '@react-icons/all-files/ai/AiFillLock';
 import { FiUpload } from '@react-icons/all-files/fi/FiUpload';
 import { GiClown } from '@react-icons/all-files/gi/GiClown';
 import { BsFillPersonFill } from '@react-icons/all-files/bs/BsFillPersonFill';
+import useAuth from '../hooks/useAuth';
 
-export default function SigIn() {
+export default function BookNew() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
+  const { currentUser, handleUserLogout } = useAuth();
 
   if (loading) {
     return <h2>Loading...</h2>;
   }
 
   return (
-    <section className="hero is-success is-fullheight">
+    <section className="hero Books is-fullheight">
       <div className="hero-body">
         <div className="container">
           <div className="columns is-centered">
             <div className="column is-5-tablet is-4-desktop is-3-widescreen">
               <Formik
                 initialValues={{
-                  firstName: '',
-                  lastName: '',
-                  email: '',
-                  password: '',
-                  passwordConfirmation: '',
-                  file: '',
-                  acceptedTerms: false,
+                  title: '',
+                  isbn: '',
+                  author: '',
+                  genre: '',
+                  userId: '',
+                  description: '',
                 }}
                 validationSchema={Yup.object({
-                  firstName: Yup.string()
-                    .min(3, 'Your name must be at least 3 characters')
-                    .max(30, 'Your name must be 30 characters or less')
+                  title: Yup.string()
+                    .min(2, 'The title must be at least 2 characters')
+                    .max(50, 'The title must be 50 characters or less')
                     .required('This field is required'),
-                  lastName: Yup.string()
-                    .min(2, 'Your lastname must be at least 2 characters')
-                    .max(30, 'Your lastname must be 15 characters or less')
+                  isbn: Yup.string()
+                    .min(10, 'The ISBN must be at least 10 characters')
+                    .max(13, 'The ISBN must be 13 characters or less')
                     .required('This field is required'),
-                  email: Yup.string()
-                    .email('Invalid email')
+                  author: Yup.string()
+                    .min(2, 'The author must be at least 2 characters')
+                    .max(50, 'The author must be 50 characters or less')
                     .required('This field is required'),
-                  password: Yup.string()
-                    .min(6, 'Your password must be at least 6 characters')
-                    .max(30, 'Your password must be 30 characters or less')
-                    .required('Password is required'),
-                  passwordConfirmation: Yup.string()
-                    .oneOf([Yup.ref('password'), null], 'Passwords must match')
-                    .required('Please confirm your password'),
-                  acceptedTerms: Yup.boolean()
-                    .required('Required')
-                    .oneOf([true], 'Please accept terms and conditions'),
+                  genre: Yup.string()
+                    .min(2, 'The genre must be at least 6 characters')
+                    .max(50, 'The genre must be 30 characters or less')
+                    .required('This field is required'),
+                  description: Yup.string()
+                    .max(1024, 'The description must be 1024 characters or less'),
                 })}
                 onSubmit={async (values) => {
                   setLoading(true);
                   const formData = new FormData();
-                  formData.append('firstName', values.firstName);
-                  formData.append('lastName', values.lastName);
-                  formData.append('email', values.email);
-                  formData.append('password', values.password);
-                  formData.append('passwordConfirmation', values.passwordConfirmation);
+                  formData.append('title', values.title);
+                  formData.append('isbn', values.isbn);
+                  formData.append('author', values.author);
+                  formData.append('genre', values.genre);
+                  formData.append('description', values.description);
                   formData.append('image', values.file);
-                  formData.append('acceptedTerms', values.acceptedTerms);
                   const requestOptions = {
                     method: 'POST',
                     headers: new Headers({
                       Accept: 'application/json',
+                      Authorization: `Bearer ${currentUser.access_token}`,
                     }),
                     body: formData,
                   };
                   try {
-                    const response = await fetch(`${process.env.REACT_APP_API_URL}/users`, requestOptions);
+                    const response = await fetch(`${process.env.REACT_APP_API_URL}/books`, requestOptions);
                     if (!response.ok) {
                       const error = await response.text();
                       throw new Error(error);
                     }
-                    setMessage('User has been sucesesfully created');
+                    setMessage('Books has been sucesesfully created');
+                    return <Redirect to="/books" />
                   } catch (error) {
                     setMessage(error.message);
                   } finally {
@@ -89,11 +87,11 @@ export default function SigIn() {
                 {({ errors, touched, setFieldValue }) => (
                   <Form className="box">
                     <div className="field">
-                      <label htmlFor="Email" className="label">Email</label>
+                      <label htmlFor="Title" className="label">Title</label>
                       <div className="control has-icons-left">
-                        <Field type="email" name="email" placeholder="Email" className="input" />
-                        {errors.email && touched.email ? (
-                          <div>{errors.email}</div>
+                        <Field type="text" name="title" placeholder="Title" className="input" />
+                        {errors.title && touched.title ? (
+                          <div>{errors.title}</div>
                         ) : null}
                         <span className="icon is-small is-left">
                           <FaRegEnvelope />
@@ -102,11 +100,11 @@ export default function SigIn() {
                     </div>
 
                     <div className="field">
-                      <label className="label" htmlFor="firstName">First Name</label>
+                      <label className="label" htmlFor="isbn">ISBN</label>
                       <div className="control has-icons-left">
-                        <Field className="input" name="firstName" type="text" placeholder="Bastian" />
-                        {errors.firstName && touched.firstName ? (
-                          <div>{errors.firstName}</div>
+                        <Field className="input" name="isbn" type="number" placeholder="9786124497001" />
+                        {errors.isbn && touched.isbn ? (
+                          <div>{errors.isbn}</div>
                         ) : null}
                         <span className="icon is-small is-left">
                           <GiClown />
@@ -115,11 +113,11 @@ export default function SigIn() {
                     </div>
 
                     <div className="field">
-                      <label className="label" htmlFor="lastName">Last Name</label>
+                      <label className="label" htmlFor="author">Author</label>
                       <div className="control has-icons-left">
-                        <Field className="input" name="lastName" type="text" placeholder="Hilcker" />
-                        {errors.lastName && touched.lastName ? (
-                          <div>{errors.lastName}</div>
+                        <Field className="input" name="author" type="text" placeholder="Bastian Hilcker" />
+                        {errors.author && touched.author ? (
+                          <div>{errors.author}</div>
                         ) : null}
                         <span className="icon is-small is-left">
                           <BsFillPersonFill />
@@ -128,11 +126,11 @@ export default function SigIn() {
                     </div>
 
                     <div className="field">
-                      <label htmlFor="password" className="label">Password</label>
+                      <label htmlFor="genre" className="label">Genre</label>
                       <div className="control has-icons-left">
-                        <Field type="password" name="password" className="input" placeholder="*******" />
-                        {errors.password && touched.password ? (
-                          <div>{errors.password}</div>
+                        <Field type="text" name="genre" className="input" placeholder="Fantasy" />
+                        {errors.genre && touched.genre ? (
+                          <div>{errors.genre}</div>
                         ) : null}
                         <span className="icon is-small is-left">
                           <AiFillLock />
@@ -141,17 +139,19 @@ export default function SigIn() {
                     </div>
 
                     <div className="field">
-                      <label htmlFor="passwordConfirmation" className="label">Password Confirmation</label>
+                      <label htmlFor="description" className="label">Description</label>
                       <div className="control has-icons-left">
-                        <Field type="password" name="passwordConfirmation" className="input" placeholder="*******" />
-                        {errors.passwordConfirmation && touched.passwordConfirmation ? (
-                          <div>{errors.passwordConfirmation}</div>
+                        <Field type="text" name="description" className="input" placeholder="Noice" />
+                        {errors.description && touched.description ? (
+                          <div>{errors.description}</div>
                         ) : null}
                         <span className="icon is-small is-left">
                           <AiFillLock />
                         </span>
                       </div>
                     </div>
+
+                    <Field type="hidden" name="userId" className="input" value={currentUser.id} />
 
                     <div className="file">
                       <label className="file-label">
@@ -168,7 +168,7 @@ export default function SigIn() {
                             <FiUpload />
                           </span>
                           <span className="file-label">
-                            Choose a file…
+                            Choose a file...
                           </span>
                         </span>
                       </label>
@@ -177,16 +177,8 @@ export default function SigIn() {
                     <br />
 
                     <div className="field">
-                      <label className="checkbox" htmlFor="acceptedTerms">Accept terms and conditions?</label>
-                      <Field type="checkbox" name="acceptedTerms" />
-                      {errors.acceptedTerms && touched.acceptedTerms ? (
-                        <div>{errors.acceptedTerms}</div>
-                      ) : null}
-                    </div>
-
-                    <div className="field">
                       <button className="button is-success" type="submit">
-                        Create account
+                        Create book
                       </button>
                     </div>
                   </Form>
