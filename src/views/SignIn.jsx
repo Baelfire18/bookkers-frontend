@@ -2,22 +2,24 @@ import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
+import { Redirect } from 'react-router-dom';
 import { FaRegEnvelope } from '@react-icons/all-files/fa/FaRegEnvelope';
 import { AiFillLock } from '@react-icons/all-files/ai/AiFillLock';
 import { FiUpload } from '@react-icons/all-files/fi/FiUpload';
 import { GiClown } from '@react-icons/all-files/gi/GiClown';
 import { BsFillPersonFill } from '@react-icons/all-files/bs/BsFillPersonFill';
+import useAuth from '../hooks/useAuth';
 
 export default function SigIn() {
-
-  
-
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
+  const { currentUser, handleUserLogin } = useAuth();
 
   if (loading) {
     return <h2>Loading...</h2>;
   }
+
+  if (currentUser) return <Redirect to="/" />;
 
   return (
     <section className="hero is-success is-fullheight">
@@ -60,29 +62,45 @@ export default function SigIn() {
                 })}
                 onSubmit={async (values) => {
                   setLoading(true);
-                  let formData = new FormData();
-                  formData.append("firstName", values.firstName);
-                  formData.append("lastName", values.lastName);
-                  formData.append("email", values.email);
-                  formData.append("password", values.password);
-                  formData.append("passwordConfirmation", values.passwordConfirmation);
-                  formData.append("image", values.file);
-                  formData.append("acceptedTerms", values.acceptedTerms);
-                  console.log(values);
+                  const formData = new FormData();
+                  const formDataAuth = new FormData();
+                  formData.append('firstName', values.firstName);
+                  formData.append('lastName', values.lastName);
+                  formData.append('email', values.email);
+                  formData.append('password', values.password);
+                  formData.append('passwordConfirmation', values.passwordConfirmation);
+                  formData.append('image', values.file);
+                  formData.append('acceptedTerms', values.acceptedTerms);
                   const requestOptions = {
                     method: 'POST',
                     headers: new Headers({
-                      Accept: "application/json",
+                      Accept: 'application/json',
                     }),
                     body: formData,
                   };
+                  formDataAuth.append('email', values.email);
+                  formDataAuth.append('password', values.password);
+                  const requestOptionsAuth = {
+                    method: 'POST',
+                    headers: new Headers({
+                      Accept: 'application/json',
+                    }),
+                    body: formDataAuth,
+                  };
                   try {
-                    const response = await fetch(`${process.env.REACT_APP_API_URL}/users`, requestOptions);
+                    let response = await fetch(`${process.env.REACT_APP_API_URL}/users`, requestOptions);
                     if (!response.ok) {
                       const error = await response.text();
                       throw new Error(error);
                     }
                     setMessage('User has been sucesesfully created');
+                    response = await fetch(`${process.env.REACT_APP_API_URL}/auth`, requestOptionsAuth);
+                    if (!response.ok) {
+                      error = await response.text();
+                      throw new Error(error);
+                    }
+                    const user = await response.json();
+                    handleUserLogin(user);
                   } catch (error) {
                     setMessage(error.message);
                   } finally {
@@ -90,7 +108,7 @@ export default function SigIn() {
                   }
                 }}
               >
-                {({ errors, touched, setFieldValue}) => (
+                {({ errors, touched, setFieldValue }) => (
                   <Form className="box">
                     <div className="field">
                       <label htmlFor="Email" className="label">Email</label>
@@ -159,9 +177,14 @@ export default function SigIn() {
 
                     <div className="file">
                       <label className="file-label">
-                        <input className="file-input" type="file" name="resume" onChange={event => {
-                          setFieldValue("file", event.currentTarget.files[0]);
-                        }} />
+                        <input
+                          className="file-input"
+                          type="file"
+                          name="resume"
+                          onChange={(event) => {
+                            setFieldValue('file', event.currentTarget.files[0]);
+                          }}
+                        />
                         <span className="file-cta">
                           <span className="file-icon">
                             <FiUpload />
