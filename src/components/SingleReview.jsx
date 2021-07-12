@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { FcLike } from '@react-icons/all-files/fc/FcLike';
+import { AiFillStar } from '@react-icons/all-files/ai/AiFillStar';
 import { Deserializer } from 'jsonapi-serializer';
 import SingleReport from './SingleReport';
 import useAuth from '../hooks/useAuth';
 
 export default function SingleReview(prop) {
-
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState([]);
-  const { currentUser, handleUserLogout } = useAuth();
+  const { currentUser } = useAuth();
 
   const { review } = prop;
   const {
@@ -38,7 +38,11 @@ export default function SingleReview(prop) {
       .catch(() => setError(true))
       .finally(() => setLoading(false));
   }, []);
-  
+
+  const count = [];
+  for (let i = 0; i < score; i += 1) {
+    count.push(i);
+  }
 
   return (
     <article className="media">
@@ -50,9 +54,21 @@ export default function SingleReview(prop) {
       <div className="media-content">
         <div className="content">
           <p>
-            <strong id={`${reviewId}`}>{user.firstName} {user.lastName}</strong>
+            <strong id={`${reviewId}`}>
+              {user.firstName}
+              {' '}
+              {user.lastName}
+            </strong>
             <br />
             {content}
+            <br />
+            <small>
+              <p>
+                {count.map(() => (
+                  <AiFillStar />
+                ))}
+              </p>
+            </small>
             <br />
             <small>
               <a href={`#${reviewId}`}>

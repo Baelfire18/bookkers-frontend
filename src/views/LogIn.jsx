@@ -61,47 +61,51 @@ export default function LogIn() {
               <form onSubmit={handleSubmit} className="box">
 
                 <div className="field">
-                  <label htmlFor="email" className="label">Email</label>
-                  <div className="control has-icons-left  has-icons-right">
-                    <input
-                      type="text"
-                      id="email"
-                      name="email"
-                      value={values.email}
-                      placeholder="example@domain.com"
-                      className="input"
-                      onChange={handleChange}
-                      required
-                    />
-                    <span className="icon is-small is-left">
-                      <FaRegEnvelope />
-                    </span>
-                    <span className="icon is-small is-right">
-                      <FcCheckmark />
-                    </span>
+                  <label htmlFor="email" className="label">
+                    Email
+                    <div className="control has-icons-left  has-icons-right">
+                      <input
+                        type="text"
+                        id="email"
+                        name="email"
+                        value={values.email}
+                        placeholder="example@domain.com"
+                        className="input"
+                        onChange={handleChange}
+                        required
+                      />
+                      <span className="icon is-small is-left">
+                        <FaRegEnvelope />
+                      </span>
+                      <span className="icon is-small is-right">
+                        <FcCheckmark />
+                      </span>
 
-                  </div>
+                    </div>
+                  </label>
                 </div>
                 <div className="field">
-                  <label htmlFor="" className="label">Password</label>
-                  <div className="control has-icons-left">
-                    <input
-                      type="password"
-                      id="password"
-                      name="password"
-                      value={values.password}
-                      placeholder="*******"
-                      className="input"
-                      onChange={handleChange}
-                      required
-                    />
-                    <span className="icon is-small is-left">
-                      <AiFillLock />
-                    </span>
-                  </div>
+                  <label htmlFor="password" className="label">
+                    Password
+                    <div className="control has-icons-left">
+                      <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        value={values.password}
+                        placeholder="*******"
+                        className="input"
+                        onChange={handleChange}
+                        required
+                      />
+                      <span className="icon is-small is-left">
+                        <AiFillLock />
+                      </span>
+                    </div>
+                  </label>
                 </div>
                 <div className="field">
-                  <label htmlFor="" className="checkbox">
+                  <label htmlFor="checkbox" className="checkbox">
                     <input type="checkbox" />
                     Remember me
                   </label>

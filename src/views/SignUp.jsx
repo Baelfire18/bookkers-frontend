@@ -96,7 +96,7 @@ export default function SignUp() {
                     setMessage('User has been sucesesfully created');
                     response = await fetch(`${process.env.REACT_APP_API_URL}/auth`, requestOptionsAuth);
                     if (!response.ok) {
-                      error = await response.text();
+                      const error = await response.text();
                       throw new Error(error);
                     }
                     const user = await response.json();
@@ -111,72 +111,82 @@ export default function SignUp() {
                 {({ errors, touched, setFieldValue }) => (
                   <Form className="box">
                     <div className="field">
-                      <label htmlFor="Email" className="label">Email</label>
-                      <div className="control has-icons-left">
-                        <Field type="email" name="email" placeholder="Email" className="input" />
-                        {errors.email && touched.email ? (
-                          <div>{errors.email}</div>
-                        ) : null}
-                        <span className="icon is-small is-left">
-                          <FaRegEnvelope />
-                        </span>
-                      </div>
+                      <label htmlFor="Email" className="label">
+                        Email
+                        <div className="control has-icons-left">
+                          <Field type="email" name="email" placeholder="Email" className="input" />
+                          {errors.email && touched.email ? (
+                            <div>{errors.email}</div>
+                          ) : null}
+                          <span className="icon is-small is-left">
+                            <FaRegEnvelope />
+                          </span>
+                        </div>
+                      </label>
                     </div>
 
                     <div className="field">
-                      <label className="label" htmlFor="firstName">First Name</label>
-                      <div className="control has-icons-left">
-                        <Field className="input" name="firstName" type="text" placeholder="Bastian" />
-                        {errors.firstName && touched.firstName ? (
-                          <div>{errors.firstName}</div>
-                        ) : null}
-                        <span className="icon is-small is-left">
-                          <GiClown />
-                        </span>
-                      </div>
+                      <label className="label" htmlFor="firstName">
+                        First Name
+                        <div className="control has-icons-left">
+                          <Field className="input" name="firstName" type="text" placeholder="Bastian" />
+                          {errors.firstName && touched.firstName ? (
+                            <div>{errors.firstName}</div>
+                          ) : null}
+                          <span className="icon is-small is-left">
+                            <GiClown />
+                          </span>
+                        </div>
+                      </label>
                     </div>
 
                     <div className="field">
-                      <label className="label" htmlFor="lastName">Last Name</label>
-                      <div className="control has-icons-left">
-                        <Field className="input" name="lastName" type="text" placeholder="Hilcker" />
-                        {errors.lastName && touched.lastName ? (
-                          <div>{errors.lastName}</div>
-                        ) : null}
-                        <span className="icon is-small is-left">
-                          <BsFillPersonFill />
-                        </span>
-                      </div>
+                      <label className="label" htmlFor="lastName">
+                        Last Name
+                        <div className="control has-icons-left">
+                          <Field className="input" name="lastName" type="text" placeholder="Hilcker" />
+                          {errors.lastName && touched.lastName ? (
+                            <div>{errors.lastName}</div>
+                          ) : null}
+                          <span className="icon is-small is-left">
+                            <BsFillPersonFill />
+                          </span>
+                        </div>
+                      </label>
                     </div>
 
                     <div className="field">
-                      <label htmlFor="password" className="label">Password</label>
-                      <div className="control has-icons-left">
-                        <Field type="password" name="password" className="input" placeholder="*******" />
-                        {errors.password && touched.password ? (
-                          <div>{errors.password}</div>
-                        ) : null}
-                        <span className="icon is-small is-left">
-                          <AiFillLock />
-                        </span>
-                      </div>
+                      <label htmlFor="password" className="label">
+                        Password
+                        <div className="control has-icons-left">
+                          <Field type="password" name="password" className="input" placeholder="*******" />
+                          {errors.password && touched.password ? (
+                            <div>{errors.password}</div>
+                          ) : null}
+                          <span className="icon is-small is-left">
+                            <AiFillLock />
+                          </span>
+                        </div>
+                      </label>
                     </div>
 
                     <div className="field">
-                      <label htmlFor="passwordConfirmation" className="label">Password Confirmation</label>
-                      <div className="control has-icons-left">
-                        <Field type="password" name="passwordConfirmation" className="input" placeholder="*******" />
-                        {errors.passwordConfirmation && touched.passwordConfirmation ? (
-                          <div>{errors.passwordConfirmation}</div>
-                        ) : null}
-                        <span className="icon is-small is-left">
-                          <AiFillLock />
-                        </span>
-                      </div>
+                      <label htmlFor="passwordConfirmation" className="label">
+                        Password Confirmation
+                        <div className="control has-icons-left">
+                          <Field type="password" name="passwordConfirmation" className="input" placeholder="*******" />
+                          {errors.passwordConfirmation && touched.passwordConfirmation ? (
+                            <div>{errors.passwordConfirmation}</div>
+                          ) : null}
+                          <span className="icon is-small is-left">
+                            <AiFillLock />
+                          </span>
+                        </div>
+                      </label>
                     </div>
 
                     <div className="file">
-                      <label className="file-label">
+                      <label htmlFor="file" className="file-label">
                         <input
                           className="file-input"
                           type="file"
@@ -199,11 +209,13 @@ export default function SignUp() {
                     <br />
 
                     <div className="field">
-                      <label className="checkbox" htmlFor="acceptedTerms">Accept terms and conditions?</label>
-                      <Field type="checkbox" name="acceptedTerms" />
-                      {errors.acceptedTerms && touched.acceptedTerms ? (
-                        <div>{errors.acceptedTerms}</div>
-                      ) : null}
+                      <label className="checkbox" htmlFor="acceptedTerms">
+                        Accept terms and conditions?
+                        <Field type="checkbox" name="acceptedTerms" />
+                        {errors.acceptedTerms && touched.acceptedTerms ? (
+                          <div>{errors.acceptedTerms}</div>
+                        ) : null}
+                      </label>
                     </div>
 
                     <div className="field">

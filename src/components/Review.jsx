@@ -11,7 +11,7 @@ export default function Review() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [reviews, setReviews] = useState([]);
-  const { currentUser, handleUserLogout } = useAuth();
+  const { currentUser } = useAuth();
 
   useEffect(() => {
     setLoading(true);
@@ -24,7 +24,7 @@ export default function Review() {
         return response.json();
       })
       .then((data) => {
-        if (data.length != 0) {
+        if (data.length !== 0) {
           new Deserializer({ keyForAttribute: 'camelCase' }).deserialize(data, (_error, reviewsData) => setReviews(reviewsData));
         }
       })
@@ -33,7 +33,7 @@ export default function Review() {
   }, []);
 
   if (!currentUser) {
-    return (<h2>Log in to see the reviews</h2>)
+    return (<h2>Log in to see the reviews</h2>);
   }
 
   return (

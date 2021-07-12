@@ -12,7 +12,7 @@ import useAuth from '../hooks/useAuth';
 export default function BookNew() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
-  const { currentUser, handleUserLogout } = useAuth();
+  const { currentUser } = useAuth();
 
   if (!currentUser) {
     return (<Redirect to="/login" />);
@@ -81,7 +81,7 @@ export default function BookNew() {
                       throw new Error(error);
                     }
                     setMessage('Books has been sucesesfully created');
-                    return <Redirect to="/books" />;
+                      <Redirect to="/books" />;
                   } catch (error) {
                     setMessage(error.message);
                   } finally {
@@ -92,74 +92,84 @@ export default function BookNew() {
                 {({ errors, touched, setFieldValue }) => (
                   <Form className="box">
                     <div className="field">
-                      <label htmlFor="Title" className="label">Title</label>
-                      <div className="control has-icons-left">
-                        <Field type="text" name="title" placeholder="Title" className="input" />
-                        {errors.title && touched.title ? (
-                          <div>{errors.title}</div>
-                        ) : null}
-                        <span className="icon is-small is-left">
-                          <FaRegEnvelope />
-                        </span>
-                      </div>
+                      <label htmlFor="Title" className="label">
+                        Title
+                        <div className="control has-icons-left">
+                          <Field type="text" name="title" placeholder="Title" className="input" />
+                          {errors.title && touched.title ? (
+                            <div>{errors.title}</div>
+                          ) : null}
+                          <span className="icon is-small is-left">
+                            <FaRegEnvelope />
+                          </span>
+                        </div>
+                      </label>
                     </div>
 
                     <div className="field">
-                      <label className="label" htmlFor="isbn">ISBN</label>
-                      <div className="control has-icons-left">
-                        <Field className="input" name="isbn" type="number" placeholder="9786124497001" />
-                        {errors.isbn && touched.isbn ? (
-                          <div>{errors.isbn}</div>
-                        ) : null}
-                        <span className="icon is-small is-left">
-                          <GiClown />
-                        </span>
-                      </div>
+                      <label className="label" htmlFor="isbn">
+                        ISBN
+                        <div className="control has-icons-left">
+                          <Field className="input" name="isbn" type="number" placeholder="9786124497001" />
+                          {errors.isbn && touched.isbn ? (
+                            <div>{errors.isbn}</div>
+                          ) : null}
+                          <span className="icon is-small is-left">
+                            <GiClown />
+                          </span>
+                        </div>
+                      </label>
                     </div>
 
                     <div className="field">
-                      <label className="label" htmlFor="author">Author</label>
-                      <div className="control has-icons-left">
-                        <Field className="input" name="author" type="text" placeholder="Bastian Hilcker" />
-                        {errors.author && touched.author ? (
-                          <div>{errors.author}</div>
-                        ) : null}
-                        <span className="icon is-small is-left">
-                          <BsFillPersonFill />
-                        </span>
-                      </div>
+                      <label className="label" htmlFor="author">
+                        Author
+                        <div className="control has-icons-left">
+                          <Field className="input" name="author" type="text" placeholder="Bastian Hilcker" />
+                          {errors.author && touched.author ? (
+                            <div>{errors.author}</div>
+                          ) : null}
+                          <span className="icon is-small is-left">
+                            <BsFillPersonFill />
+                          </span>
+                        </div>
+                      </label>
                     </div>
 
                     <div className="field">
-                      <label htmlFor="genre" className="label">Genre</label>
-                      <div className="control has-icons-left">
-                        <Field type="text" name="genre" className="input" placeholder="Fantasy" />
-                        {errors.genre && touched.genre ? (
-                          <div>{errors.genre}</div>
-                        ) : null}
-                        <span className="icon is-small is-left">
-                          <AiFillLock />
-                        </span>
-                      </div>
+                      <label htmlFor="genre" className="label">
+                        Genre
+                        <div className="control has-icons-left">
+                          <Field type="text" name="genre" className="input" placeholder="Fantasy" />
+                          {errors.genre && touched.genre ? (
+                            <div>{errors.genre}</div>
+                          ) : null}
+                          <span className="icon is-small is-left">
+                            <AiFillLock />
+                          </span>
+                        </div>
+                      </label>
                     </div>
 
                     <div className="field">
-                      <label htmlFor="description" className="label">Description</label>
-                      <div className="control has-icons-left">
-                        <Field type="text" name="description" className="input" placeholder="Noice" />
-                        {errors.description && touched.description ? (
-                          <div>{errors.description}</div>
-                        ) : null}
-                        <span className="icon is-small is-left">
-                          <AiFillLock />
-                        </span>
-                      </div>
+                      <label htmlFor="description" className="label">
+                        Description
+                        <div className="control has-icons-left">
+                          <Field type="text" name="description" className="input" placeholder="Noice" />
+                          {errors.description && touched.description ? (
+                            <div>{errors.description}</div>
+                          ) : null}
+                          <span className="icon is-small is-left">
+                            <AiFillLock />
+                          </span>
+                        </div>
+                      </label>
                     </div>
 
                     <Field type="hidden" name="userId" className="input" value={currentUser.id} />
 
                     <div className="file">
-                      <label className="file-label">
+                      <label htmlFor="file" className="file-label">
                         <input
                           className="file-input"
                           type="file"

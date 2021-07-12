@@ -5,12 +5,13 @@ export default function Home() {
     <div>
       <h1 className="title">Welcome to Bookkers</h1>
       <div className="notification is-danger">
-        <button className="delete" type="submit" />
-        <strong>Warning!!</strong>
-        {' '}
-        <br />
-        {' '}
-        Están de baja estas vistas (sorry) :(
+        <button className="button is-danger" type="submit">
+          <strong>Warning!!</strong>
+          {' '}
+          <br />
+          {' '}
+          Están de baja estas vistas (sorry) :(
+        </button>
       </div>
 
       <img alt="" src="https://i.ytimg.com/vi/6Z0lStsM6pA/maxresdefault.jpg" />
