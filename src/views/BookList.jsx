@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Deserializer } from 'jsonapi-serializer';
 import SingleBook from '../components/SingleBook';
 import '../styles/books.css';
@@ -38,7 +39,7 @@ function Books() {
           <div className="Title">
             <h1>Books</h1>
           </div>
-
+          <Link className="button is-success" to="/books/new">Create New Book</Link>
           <ul className="BookList">
             {books.map((book) => (
               <SingleBook key={book.id} book={book} />
