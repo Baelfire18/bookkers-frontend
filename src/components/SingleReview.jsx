@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { AiFillStar } from '@react-icons/all-files/ai/AiFillStar';
 import { BsPencil } from '@react-icons/all-files/bs/BsPencil';
 import { Deserializer } from 'jsonapi-serializer';
 import SingleReport from './SingleReport';
 import useAuth from '../hooks/useAuth';
 import Like from './Like';
 import EditReview from './EditReview';
+import Rating from '@material-ui/lab/Rating';
 
 export default function SingleReview(prop) {
   const [loading, setLoading] = useState(false);
@@ -77,11 +77,6 @@ export default function SingleReview(prop) {
       .finally(() => setLoading(false));
   }, []);
 
-  const count = [];
-  for (let i = 0; i < score; i += 1) {
-    count.push(i);
-  }
-
   return (
     <>
       {!edit ? (
@@ -112,9 +107,11 @@ export default function SingleReview(prop) {
                 <br />
                 <small>
                   <p>
-                    {count.map(() => (
-                      <AiFillStar />
-                    ))}
+                      <Rating
+                      name="size-small"
+                      readOnly
+                      value={score}
+                    />
                   </p>
                 </small>
                 <br />

@@ -210,8 +210,9 @@ export default function User() {
 
             <MyReview />
 
-          ) : (
+          ) : ((myLikedReviews) ? (
             <MyLikedReviews />
+          ) : <></> 
           ))}
 
         </div>
