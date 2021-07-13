@@ -166,7 +166,7 @@ export default function BookDetail(prop) {
             <Field type="hidden" name="userId" className="input" />
 
             <div className="file">
-              <label htmlFor="file" className="file-label">
+              <label className="file-label">
                 <input
                   className="file-input"
                   type="file"

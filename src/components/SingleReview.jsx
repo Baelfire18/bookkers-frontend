@@ -72,7 +72,7 @@ export default function SingleReview(prop) {
             </small>
             <br />
             <small>
-              <Like />
+              <Like review={review} />
               {' '}
               ·
               {' '}
