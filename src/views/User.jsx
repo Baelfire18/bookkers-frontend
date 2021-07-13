@@ -1,14 +1,58 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import { current } from 'immer';
+import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import { Deserializer } from 'jsonapi-serializer';
 import SingleBook from '../components/SingleBook';
-import bookArray from '../seeds/books';
+import MyReview from '../components/MyReview';
+import MyLikedReviews from '../components/MyLikedReviews';
 import useAuth from '../hooks/useAuth';
 
 export default function User() {
-  const { currentUser, handleUserLogout } = useAuth();
+  const [myBooks, setMyBooks] = useState(false);
+  const [myReviews, setMyReviews] = useState(false);
+  const [myLikedReviews, setMyLikedReviews] = useState(false);
 
-  const { id } = useParams();
+  const [myBooksArray, setMyBooksArray] = useState([]);
+
+  const { currentUser } = useAuth();
+
+  if (!currentUser) {
+    return <Redirect to="/login" />;
+  }
+
+  const requestOptions = {
+    method: 'GET',
+    headers: new Headers({
+      Accept: 'application/json',
+      Authorization: `Bearer ${currentUser.access_token}`,
+    }),
+  };
+
+  const handleMybooks = async () => {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/users/my_books`, requestOptions);
+    if (!response.ok) {
+      const error = await response.text();
+      throw new Error(error);
+    }
+    const booksArray = await response.json();
+    new Deserializer({ keyForAttribute: 'camelCase' }).deserialize(booksArray, (_error, booksData) => setMyBooksArray(booksData));
+
+    setMyBooks(true);
+    setMyReviews(false);
+    setMyLikedReviews(false);
+  };
+
+  const handleMyReviews = async () => {
+    setMyBooks(false);
+    setMyReviews(true);
+    setMyLikedReviews(false);
+  };
+
+  const handleMyLikedReviews = () => {
+    setMyBooks(false);
+    setMyReviews(false);
+    setMyLikedReviews(true);
+  };
+
   return (
     <section>
       <div className="columns">
@@ -18,7 +62,7 @@ export default function User() {
             <div className="modal-card">
               <header className="modal-card-head">
                 <p className="modal-card-title">Edit Preferences</p>
-                <button className="delete" type="submit" />
+                <button className="delete" type="submit" aria-label="Delete" />
               </header>
               <section className="modal-card-body">
                 <label className="label">Name</label>
@@ -121,7 +165,7 @@ export default function User() {
                 <p className="stat-key">likes</p>
               </div>
               <div className="column is-2-tablet is-4-mobile has-text-centered">
-                <p className="stat-val">{id}</p>
+                <p className="stat-val">{currentUser.id}</p>
                 <p className="stat-key">lists</p>
               </div>
             </div>
@@ -129,19 +173,22 @@ export default function User() {
           <div className="profile-options is-fullwidth">
             <div className="tabs is-fullwidth is-medium">
               <ul>
-                <li className="link">
-                  <a href="/users/1">
-                    <span>My Lists</span>
+
+                <li className={myReviews ? 'link is-active' : 'link'}>
+                  <a>
+                    <span onClick={handleMyReviews}>My Reviews</span>
                   </a>
                 </li>
-                <li className="link is-active">
-                  <a href="/users/1">
-                    <span>My Books</span>
+
+                <li className={myBooks ? 'link is-active' : 'link'}>
+                  <a>
+                    <span onClick={handleMybooks}>My Books</span>
                   </a>
                 </li>
-                <li className="link">
-                  <a href="/users/1">
-                    <span>My Searches</span>
+
+                <li className={myLikedReviews ? 'link is-active' : 'link'}>
+                  <a>
+                    <span onClick={handleMyLikedReviews}>My Liked Reviews</span>
                   </a>
                 </li>
                 <li className="link">
@@ -152,33 +199,20 @@ export default function User() {
               </ul>
             </div>
           </div>
-          <div className="box">
+          <br />
+          {myBooks ? (
+            <ul className="BookList" id="userBook">
+              {myBooksArray.map((book) => (
+                <SingleBook key={book.id} book={book} />
+              ))}
+            </ul>
+          ) : ((myReviews) ? (
 
-            <div className="columns">
-              <div className="column is-2-tablet user-property-count has-text-centered">
-                <p className="subtitle is-5">
-                  <strong />
-                  123
-                  <br />
-                  books
-                </p>
-              </div>
-              <div className="column is-8">
-                <p className="control has-addons">
-                  <input className="input" placeholder="Search your liked properties" type="text" />
-                  <button className="button" type="submit">
-                    Search
-                  </button>
-                </p>
-              </div>
-            </div>
-          </div>
+            <MyReview />
 
-          <ul className="BookList" id="userBook">
-            {bookArray.map((book) => (
-              <SingleBook key={book.id} book={book} />
-            ))}
-          </ul>
+          ) : (
+            <MyLikedReviews />
+          ))}
 
         </div>
       </div>

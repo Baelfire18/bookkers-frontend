@@ -1,40 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import { Deserializer } from 'jsonapi-serializer';
 import SingleReview from './SingleReview';
-import CreateReview from './CreateReview';
 import useAuth from '../hooks/useAuth';
 
-export default function Review() {
-  const { id } = useParams();
-
-  const [loading, setLoading] = useState(false);
+export default function MyReview() {
   const [error, setError] = useState(false);
   const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const { currentUser } = useAuth();
 
-  const handleAddReview = (review) => {
-    setReviews((prevReviews) => [
-      ...prevReviews,
-      {
-        content: review.attributes.content,
-        score: review.attributes.score,
-        userId: review.attributes.userId,
-        bookId: review.attributes.bookId,
-        id: review.id,
-      },
-    ]);
-    if (error) setError(false);
-  };
+  if (!currentUser) {
+    return (<h2>Log in to see the reviews</h2>);
+  }
 
   const handleRemoveReview = (reviewId) => {
     const newReviews = reviews.filter((review) => review.id !== reviewId);
     setReviews(newReviews);
+    if (newReviews.length === 0) setError(true);
   };
 
   useEffect(() => {
     setLoading(true);
-    fetch(`${process.env.REACT_APP_API_URL}/books/${id}/reviews`)
+    const requestOptions = {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        Authorization: `Bearer ${currentUser.access_token}`,
+      }),
+    };
+    fetch(`${process.env.REACT_APP_API_URL}/users/${currentUser.id}/reviews`, requestOptions)
       .then((response) => {
         if (response.status !== 200 && response.status !== 204) {
           setError(true);
@@ -51,8 +46,8 @@ export default function Review() {
       .finally(() => setLoading(false));
   }, []);
 
-  if (!currentUser) {
-    return (<h2>Log in to see the reviews</h2>);
+  if (loading) {
+    <h2>Loading...</h2>;
   }
 
   return (
@@ -61,7 +56,7 @@ export default function Review() {
         <div className="card-content">
           {error ? (
             <h2>
-              There are no reviews yet for this book :(
+              This user does not have any reviews!
               {error}
             </h2>
           ) : (
@@ -71,7 +66,6 @@ export default function Review() {
               ))}
             </>
           )}
-          <CreateReview onAdd={handleAddReview} />
         </div>
       </div>
     </section>

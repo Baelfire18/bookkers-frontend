@@ -135,7 +135,7 @@ export default function SingleReview(prop) {
       ) : (
         <>
           {/* <button className="button is-info" type="submit" onClick={handleEdit}><BsPencil /></button> */}
-          <EditReview content={content} score={score} reviewId={id} onEdit={handleOnEdit} />
+          <EditReview content={content} score={score} reviewId={id} onEdit={handleOnEdit} bookId={bookId} />
         </>
       )}
     </>
