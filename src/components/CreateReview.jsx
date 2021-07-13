@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
 import { useParams } from 'react-router-dom';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
@@ -55,9 +56,20 @@ export default function CreateReview(prop) {
 
   return (
     <>
-      <Formik enableReinitialize onSubmit={handleSubmit} initialValues={initialValues}>
+      <Formik
+        enableReinitialize
+        initialValues={initialValues}
+        validationSchema={Yup.object({
+          content: Yup.string()
+            .max(1024, 'The content must be 1024 characters or less')
+            .required('This field is required'),
+          score: Yup.number().nullable()
+            .required('This field is required'),
+        })}
+        onSubmit={handleSubmit}
+      >
         {({
-          setFieldValue, values,
+          errors, touched, setFieldValue, values,
         }) => (
           <Form className="media">
             <figure className="media-left">
@@ -74,6 +86,9 @@ export default function CreateReview(prop) {
                     placeholder="Add your review..."
                     className="textarea"
                   />
+                  {errors.content && touched.content ? (
+                    <div>{errors.content}</div>
+                  ) : null}
                 </p>
               </div>
               <div className="field">
@@ -90,6 +105,10 @@ export default function CreateReview(prop) {
                   }}
                 />
                 {value !== null && <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>}
+
+                {errors.score && touched.score ? (
+                  <div>{errors.score}</div>
+                ) : null}
               </div>
               <div className="field">
                 <p className="control">

@@ -5,6 +5,7 @@ import SingleBook from '../components/SingleBook';
 import MyReview from '../components/MyReview';
 import MyLikedReviews from '../components/MyLikedReviews';
 import useAuth from '../hooks/useAuth';
+import PopUp from '../components/PopUp';
 
 export default function User() {
   const [myBooks, setMyBooks] = useState(false);
@@ -52,6 +53,8 @@ export default function User() {
     setMyReviews(false);
     setMyLikedReviews(true);
   };
+
+  const [buttonPopUp, setButtonPopup] = useState(false);
 
   return (
     <section>
@@ -148,9 +151,14 @@ export default function User() {
                   <br />
 
                   {/* Se conecta acá */}
-                  <a className="button is-primary is-outlined" href="#userBook" id="edit-preferences">
+                  {/* <a className="button is-primary is-outlined" href="#userBook" id="edit-preferences">
                     Edit Preferences
-                  </a>
+                  </a> */}
+                  <button className="button is-primary is-outlined" onClick={() => setButtonPopup(true)}> Edit Profile </button>
+
+                  <PopUp trigger={buttonPopUp} setTrigger={setButtonPopup}>
+                    <h3>Funciona la ctm!</h3>
+                  </PopUp>
                   <br />
                 </p>
                 <p className="tagline">
