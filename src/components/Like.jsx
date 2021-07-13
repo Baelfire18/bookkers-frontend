@@ -27,7 +27,6 @@ export default function Like(prop) {
       .finally(() => setLoading(false));
   }, []);
 
-
   return (
     <>
       <a>

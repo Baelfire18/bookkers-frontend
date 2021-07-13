@@ -1,20 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { AiFillStar } from '@react-icons/all-files/ai/AiFillStar';
+import { BsPencil } from '@react-icons/all-files/bs/BsPencil';
 import { Deserializer } from 'jsonapi-serializer';
 import SingleReport from './SingleReport';
 import useAuth from '../hooks/useAuth';
 import Like from './Like';
+import EditReview from './EditReview';
 
 export default function SingleReview(prop) {
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState([]);
-  const [error, setError] = useState('');
-  const { currentUser } = useAuth();
 
   const { review } = prop;
+
+  const [error, setError] = useState('');
+  const [content, setContent] = useState(review.content);
+  const [score, setScore] = useState(review.score);
+  const { currentUser } = useAuth();
+  const [edit, setEdit] = useState(false);
+
   const {
-    content, score, reviewId, bookId, userId,
+    id, bookId, userId,
   } = review;
+
+  const handleEdit = () => {
+    setEdit(!edit);
+  };
+
+  const handleOnEdit = (updatedReview) => {
+    setContent(updatedReview.attributes.content);
+    setScore(updatedReview.attributes.score);
+    setEdit(!edit);
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -46,44 +63,58 @@ export default function SingleReview(prop) {
   }
 
   return (
-    <article className="media">
-      <figure className="media-left">
-        <p className="image is-64x64">
-          <img src={user.imageUrl} alt="/" />
-        </p>
-      </figure>
-      <div className="media-content">
-        <div className="content">
-          <p>
-            <strong>
-              {user.firstName}
-              {' '}
-              {user.lastName}
-            </strong>
-            <br />
-            {content}
-            <br />
-            <small>
+    <>
+      {!edit ? (
+        <article className="media">
+          <figure className="media-left">
+            <p className="image is-64x64">
+              <img src={user.imageUrl} alt="/" />
+            </p>
+          </figure>
+          { currentUser.id === review.userId ? (
+            <button className="button is-info" type="submit" onClick={handleEdit}><BsPencil /></button>
+          )
+            : (<> </>
+            )}
+          <div className="media-content">
+            <div className="content">
               <p>
-                {count.map(() => (
-                  <AiFillStar />
-                ))}
+                <strong id={`${id}`}>
+                  {user.firstName}
+                  {' '}
+                  {user.lastName}
+                </strong>
+                <br />
+                {content}
+                <br />
+                <small>
+                  <p>
+                    {count.map(() => (
+                      <AiFillStar />
+                    ))}
+                  </p>
+                </small>
+                <br />
+                <small>
+                  <Like review={review} />
+                  {' '}
+                  ·
+                  {' '}
+                  <a href="#AunNoLaHacemos">Report</a>
+                  {' '}
+                  · 7 days
+                </small>
               </p>
-            </small>
-            <br />
-            <small>
-              <Like review={review} />
-              {' '}
-              ·
-              {' '}
-              <a href="#AunNoLaHacemos">Report</a>
-              {' '}
-              · 7 days
-            </small>
-          </p>
-        </div>
-        <SingleReport />
-      </div>
-    </article>
+            </div>
+            {/* <SingleReport /> */}
+          </div>
+        </article>
+      ) : (
+        <>
+          {/* <button className="button is-info" type="submit" onClick={handleEdit}><BsPencil /></button> */}
+          <EditReview content={content} score={score} reviewId={id} onEdit={handleOnEdit} />
+        </>
+      )}
+    </>
   );
 }

@@ -10,7 +10,9 @@ import { BsFillPersonFill } from '@react-icons/all-files/bs/BsFillPersonFill';
 import useAuth from '../hooks/useAuth';
 
 export default function BookDetail(prop) {
-  const { initialValues, method, id } = prop;
+  const {
+    initialValues, method, id, buttonText,
+  } = prop;
 
   const history = useHistory();
 
@@ -86,7 +88,9 @@ export default function BookDetail(prop) {
           }
         }}
       >
-        {({ errors, touched, setFieldValue }) => (
+        {({
+          errors, touched, setFieldValue, values,
+        }) => (
           <Form className="box">
             <div className="field">
               <label htmlFor="Title" className="label">
@@ -180,7 +184,13 @@ export default function BookDetail(prop) {
                     <FiUpload />
                   </span>
                   <span className="file-label">
-                    Choose a file...
+                    {values.file ? (
+                      values.file.name
+                    ) : (
+                      <>
+                        <h2>Choose a file...</h2>
+                      </>
+                    )}
                   </span>
                 </span>
               </label>
@@ -190,7 +200,7 @@ export default function BookDetail(prop) {
 
             <div className="field">
               <button className="button is-success" type="submit">
-                Create book
+                {buttonText}
               </button>
             </div>
           </Form>

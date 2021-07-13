@@ -24,7 +24,7 @@ export default function BookNew() {
       <div className="hero-body">
         <div className="container">
           <div className="columns is-centered">
-            <BookForm initialValues={initialValues} method="POST" />
+            <BookForm initialValues={initialValues} method="POST" buttonText="New Book" />
           </div>
         </div>
       </div>
