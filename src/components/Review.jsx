@@ -27,6 +27,11 @@ export default function Review() {
     if (error) setError(false);
   };
 
+  const handleRemoveReview = (reviewId) => {
+    const newReviews = reviews.filter((review) => review.id !== reviewId);
+    setReviews(newReviews);
+  }
+
   useEffect(() => {
     setLoading(true);
     fetch(`${process.env.REACT_APP_API_URL}/books/${id}/reviews`)
@@ -62,7 +67,7 @@ export default function Review() {
           ) : (
             <>
               {reviews.map((review) => (
-                <SingleReview key={review.id} review={review} />
+                <SingleReview key={review.id} review={review} onRemove={handleRemoveReview} />
               ))}
             </>
           )}

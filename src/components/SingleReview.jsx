@@ -11,7 +11,7 @@ export default function SingleReview(prop) {
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState([]);
 
-  const { review } = prop;
+  const { review, onRemove } = prop;
 
   const [error, setError] = useState('');
   const [content, setContent] = useState(review.content);
@@ -31,6 +31,26 @@ export default function SingleReview(prop) {
     setContent(updatedReview.attributes.content);
     setScore(updatedReview.attributes.score);
     setEdit(!edit);
+  };
+
+  const handleDelete = async () => {
+    const requestOptions = {
+      method: 'DELETE',
+      headers: new Headers({
+        Accept: 'application/json',
+        Authorization: `Bearer ${currentUser.access_token}`,
+      }),
+    };
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/books/${bookId}/reviews/${id}`, requestOptions);
+      if (!response.ok) {
+        const error = await response.text();
+        throw new Error(error);
+      }
+      onRemove(id);
+    } catch (error) {
+      error;
+    }
   };
 
   useEffect(() => {
@@ -72,7 +92,10 @@ export default function SingleReview(prop) {
             </p>
           </figure>
           { currentUser.id === review.userId ? (
-            <button className="button is-info" type="submit" onClick={handleEdit}><BsPencil /></button>
+            <>
+              <button className="button is-info" type="submit" onClick={handleEdit}><BsPencil /></button>
+              <button className="button is-danger" type="submit" onClick={handleDelete}><BsPencil /></button>
+            </>
           )
             : (<> </>
             )}
