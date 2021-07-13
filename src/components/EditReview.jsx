@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
-import { useParams } from 'react-router-dom';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 import useAuth from '../hooks/useAuth';

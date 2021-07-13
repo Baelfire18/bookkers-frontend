@@ -24,7 +24,16 @@ export default function NavBar() {
         <div id="navMenuColorblack-example" className={`navbar-menu ${isActive ? 'is-active' : ''}`}>
           <div className="navbar-end">
             <Link to="/" className="navbar-item">Home</Link>
-            <Link to="/users/1" className="navbar-item">MyProfile</Link>
+            {currentUser ? (
+              <>
+                <Link to="/users/my_profile" className="navbar-item">My Profile</Link>
+                {(currentUser.admin) ? (
+                  <Link to="/users/all_users" className="navbar-item">All Users</Link>
+                ) : (
+                  ''
+                )}
+              </>
+            ) : ('')}
             <Link to="/books" className="navbar-item">Books</Link>
             <a href="https://github.com/IIC2513-2021-1/grupo-demaciagang-p2-frontend" target="_blanck" className="navbar-item"> About Us</a>
             <a className="navbar-item" href="/chileNecesitaAJoseAntonioKast">
@@ -36,7 +45,7 @@ export default function NavBar() {
                 <p className="navbar-link">
                   {currentUser.firstName}
                   <div className="navbar-dropdown">
-                    <Link to="/users/1" className="navbar-item" onClick={(event) => { event.target.blur(); }}>
+                    <Link to="/users/my_profile" className="navbar-item" onClick={(event) => { event.target.blur(); }}>
                       Profile
                       {' '}
                       {' '}

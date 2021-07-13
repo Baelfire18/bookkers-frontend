@@ -12,6 +12,7 @@ import SignUp from './views/SignUp';
 import User from './views/User';
 import NotFound from './views/NotFound';
 import AuthContextProvider from './contexts/AuthContext';
+import AllUsers from './views/AllUsers';
 
 export default function Routes() {
   return (
@@ -19,7 +20,8 @@ export default function Routes() {
       <AuthContextProvider>
         <NavBar />
         <Switch>
-          <Route path="/users/:id" component={User} />
+          <Route path="/users/all_users" component={AllUsers} />
+          <Route path="/users/my_profile" component={User} />
           <Route path="/login" component={LogIn} />
           <Route path="/signup" component={SignUp} />
           <Route path="/books/new" component={BookNew} />
