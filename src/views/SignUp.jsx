@@ -108,7 +108,9 @@ export default function SignUp() {
                   }
                 }}
               >
-                {({ errors, touched, setFieldValue }) => (
+                {({
+                  errors, touched, setFieldValue, values,
+                }) => (
                   <Form className="box">
                     <div className="field">
                       <label htmlFor="Email" className="label">
@@ -189,8 +191,9 @@ export default function SignUp() {
                       <label htmlFor="file" className="file-label">
                         <input
                           className="file-input"
+                          id="file"
                           type="file"
-                          name="resume"
+                          name="file"
                           onChange={(event) => {
                             setFieldValue('file', event.currentTarget.files[0]);
                           }}
@@ -200,7 +203,13 @@ export default function SignUp() {
                             <FiUpload />
                           </span>
                           <span className="file-label">
-                            Choose a file…
+                            {values.file ? (
+                              values.file.name
+                            ) : (
+                              <>
+                                <h2>Choose a file...</h2>
+                              </>
+                            )}
                           </span>
                         </span>
                       </label>
