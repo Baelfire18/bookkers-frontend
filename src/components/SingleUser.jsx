@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaTrash } from '@react-icons/all-files/fa/FaTrash';
 import useAuth from '../hooks/useAuth';
 
 export default function SingleUser(prop) {
   const { user, onRemove } = prop;
 
+
+  const [error, setError] = useState('');
   const { currentUser } = useAuth();
 
   const {
     id, firstName, lastName,
   } = user;
+
 
   const handleDelete = async () => {
     const requestOptions = {
@@ -27,7 +30,7 @@ export default function SingleUser(prop) {
       }
       onRemove(id);
     } catch (error) {
-      error;
+      setError(error);
     }
   };
 
