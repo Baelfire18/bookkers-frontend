@@ -5,14 +5,12 @@ import useAuth from '../hooks/useAuth';
 export default function SingleUser(prop) {
   const { user, onRemove } = prop;
 
-
   const [error, setError] = useState('');
   const { currentUser } = useAuth();
 
   const {
     id, firstName, lastName,
   } = user;
-
 
   const handleDelete = async () => {
     const requestOptions = {

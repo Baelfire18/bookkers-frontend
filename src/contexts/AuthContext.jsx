@@ -23,7 +23,7 @@ const AuthContextProvider = ({ children }) => {
   const handleUserLogout = () => {
     clearStoredUser();
     clearSessionExpDate();
-    history.push("/");
+    history.push('/');
   };
 
   const handleAutomaticLogout = useCallback(() => {

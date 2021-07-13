@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { ModalProvider } from 'react-simple-modal-provider';
 import Home from './views/Home';
 import Books from './views/BookList';
 import BookDetail from './views/BookDetail';
