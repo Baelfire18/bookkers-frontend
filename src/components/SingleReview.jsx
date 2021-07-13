@@ -74,8 +74,7 @@ export default function SingleReview(prop) {
           { currentUser.id === review.userId ? (
             <button className="button is-info" type="submit" onClick={handleEdit}><BsPencil /></button>
           )
-            : (<> </>
-            )}
+            : ''}
           <div className="media-content">
             <div className="content">
               <p>
