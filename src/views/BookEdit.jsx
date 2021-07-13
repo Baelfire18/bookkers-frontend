@@ -43,7 +43,7 @@ export default function BookEdit() {
       <div className="hero-body">
         <div className="container">
           <div className="columns is-centered">
-            <BookForm initialValues={book} method="PATCH" id={id} />
+            <BookForm initialValues={book} method="PATCH" id={id} buttonText="Edit Book" />
           </div>
         </div>
       </div>
