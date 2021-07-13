@@ -5,8 +5,10 @@ import SingleBook from '../components/SingleBook';
 import MyReview from '../components/MyReview';
 import MyLikedReviews from '../components/MyLikedReviews';
 import useAuth from '../hooks/useAuth';
+import { useModal } from "react-simple-modal-provider";
 
 export default function User() {
+  const { open: openModal4 } = useModal("Modal4");
   const [myBooks, setMyBooks] = useState(false);
   const [myReviews, setMyReviews] = useState(false);
   const [myLikedReviews, setMyLikedReviews] = useState(false);
@@ -63,7 +65,7 @@ export default function User() {
             <div className="modal-card">
               <header className="modal-card-head">
                 <p className="modal-card-title">Edit Preferences</p>
-                <button className="delete" type="submit" aria-label="Delete" />
+                <button onClick={openModal4} type="submit" aria-label="Delete" />
               </header>
               <section className="modal-card-body">
                 <label className="label">Name</label>
