@@ -6,6 +6,7 @@ import MyReview from '../components/MyReview';
 import MyLikedReviews from '../components/MyLikedReviews';
 import useAuth from '../hooks/useAuth';
 import { useModal } from "react-simple-modal-provider";
+import PopUp from '../components/PopUp';
 
 export default function User() {
   const { open: openModal4 } = useModal("Modal4");
@@ -54,6 +55,8 @@ export default function User() {
     setMyReviews(false);
     setMyLikedReviews(true);
   };
+
+  const [buttonPopUp, setButtonPopup] = useState(false);
 
   return (
     <section>
@@ -150,9 +153,14 @@ export default function User() {
                   <br />
 
                   {/* Se conecta acá */}
-                  <a className="button is-primary is-outlined" href="#userBook" id="edit-preferences">
+                  {/* <a className="button is-primary is-outlined" href="#userBook" id="edit-preferences">
                     Edit Preferences
-                  </a>
+                  </a> */}
+                  <button className="button is-primary is-outlined" onClick={() => setButtonPopup(true)}> Edit Profile </button>
+
+                  <PopUp trigger={buttonPopUp} setTrigger={setButtonPopup}>
+                    <h3>Funciona la ctm!</h3>
+                  </PopUp>
                   <br />
                 </p>
                 <p className="tagline">

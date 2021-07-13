@@ -16,7 +16,7 @@ export default function SingleBook(prop) {
     <div className="SingleBook">
       <div className="card">
         <div className="card-image">
-          <img className="book-image" alt="book" src={imageUrl || 'https://res.cloudinary.com/dhlmiijdd/image/upload/v1625949914/book_jdcwha.jpg'} />
+          <Link to={`/books/${id}`}><img className="book-image" alt="book" src={imageUrl} /></Link>
         </div>
         <div className="card-content">
           <div className="media">
