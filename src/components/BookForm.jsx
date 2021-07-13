@@ -170,9 +170,10 @@ export default function BookDetail(prop) {
             <Field type="hidden" name="userId" className="input" />
 
             <div className="file">
-              <label className="file-label">
+              <label className="file-label" htmlFor="upload-file">
                 <input
                   className="file-input"
+                  id="upload-file"
                   type="file"
                   name="resume"
                   onChange={(event) => {

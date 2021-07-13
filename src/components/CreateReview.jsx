@@ -1,16 +1,30 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { useParams } from 'react-router-dom';
+import Rating from '@material-ui/lab/Rating';
+import Box from '@material-ui/core/Box';
 import useAuth from '../hooks/useAuth';
 
-export default function CreateReview({ onAdd }) {
+export default function CreateReview(prop) {
+  const { onAdd } = prop;
+  const [value, setValue] = useState(2);
+  const [hover, setHover] = useState(-1);
+  const labels = {
+    0: 'Useless',
+    1: 'Useless+',
+    2: 'Poor+',
+    3: 'Ok+',
+    4: 'Good+',
+    5: 'Excellent+',
+  };
+
   const { id } = useParams();
   const { currentUser } = useAuth();
   const [message, setMessage] = useState('');
 
   const initialValues = {
     content: '',
-    score: 5,
+    score: 3,
   };
 
   const handleSubmit = async (values, actions) => {
@@ -42,31 +56,49 @@ export default function CreateReview({ onAdd }) {
   return (
     <>
       <Formik enableReinitialize onSubmit={handleSubmit} initialValues={initialValues}>
-        <Form className="media">
-          <figure className="media-left">
-            <p className="image is-64x64">
-              <img src={currentUser.imageUrl} alt="/" />
-            </p>
-          </figure>
-          <div className="media-content">
-            <div className="field">
-              <p className="control">
-                <Field
-                  type="text"
-                  name="content"
-                  placeholder="Add your review..."
-                  className="textarea"
+        {({
+          setFieldValue, values,
+        }) => (
+          <Form className="media">
+            <figure className="media-left">
+              <p className="image is-64x64">
+                <img src={currentUser.imageUrl} alt="/" />
+              </p>
+            </figure>
+            <div className="media-content">
+              <div className="field">
+                <p className="control">
+                  <Field
+                    type="text"
+                    name="content"
+                    placeholder="Add your review..."
+                    className="textarea"
+                  />
+                </p>
+              </div>
+              <div className="field">
+                <Rating
+                  name="score"
+                  precision={1}
+                  value={values.score}
+                  onChange={(event, newValue) => {
+                    setValue(newValue);
+                    setFieldValue('score', newValue);
+                  }}
+                  onChangeActive={(event, newHover) => {
+                    setHover(newHover);
+                  }}
                 />
-              </p>
+                {value !== null && <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>}
+              </div>
+              <div className="field">
+                <p className="control">
+                  <button className="button" id="CreateReview" type="submit">Post Review</button>
+                </p>
+              </div>
             </div>
-            <div className="field">
-              <p className="control">
-                <button className="button" id="CreateReview" type="submit">Post Review</button>
-              </p>
-            </div>
-          </div>
-        </Form>
-
+          </Form>
+        )}
       </Formik>
       <p>{message}</p>
     </>
