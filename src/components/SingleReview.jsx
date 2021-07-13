@@ -121,9 +121,9 @@ export default function SingleReview(prop) {
                     />
                   </p>
                   { !location.pathname.includes(`books/${bookId}`) ? (
-                  <Link to={`/books/${bookId}`} className=" has-text-grey-light">Asociated with this books</Link>
+                    <Link to={`/books/${bookId}`} className=" has-text-grey-light">Asociated with this books</Link>
                   ) : '' }
-                  </small>
+                </small>
                 <br />
                 <small>
                   <Like review={review} />
