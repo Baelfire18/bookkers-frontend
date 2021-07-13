@@ -13,6 +13,7 @@ export default function User() {
     <section>
       <div className="columns">
         <div className="container profile">
+          {/* Esto es el pop out */}
           <div className="modal" id="edit-preferences-modal">
             <div className="modal-background" />
             <div className="modal-card">
@@ -101,6 +102,8 @@ export default function User() {
                     {currentUser.lastName}
                   </span>
                   <br />
+
+                  {/* Se conecta acá */}
                   <a className="button is-primary is-outlined" href="#userBook" id="edit-preferences">
                     Edit Preferences
                   </a>
@@ -110,6 +113,7 @@ export default function User() {
                   The users profile bio would go here, of course.
                   It could be two lines or more or whatever.
                   We should probably limit the amount of characters to ~500 at most though.
+                  {currentUser.email}
                 </p>
               </div>
               <div className="column is-2-tablet is-4-mobile has-text-centered">

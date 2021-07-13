@@ -30,7 +30,7 @@ export default function Review() {
   const handleRemoveReview = (reviewId) => {
     const newReviews = reviews.filter((review) => review.id !== reviewId);
     setReviews(newReviews);
-  }
+  };
 
   useEffect(() => {
     setLoading(true);

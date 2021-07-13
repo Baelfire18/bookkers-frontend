@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { AiFillStar } from '@react-icons/all-files/ai/AiFillStar';
+import { AiOutlineStar } from '@react-icons/all-files/ai/AiOutlineStar';
 import { BsPencil } from '@react-icons/all-files/bs/BsPencil';
+import { FaTrash } from '@react-icons/all-files/fa/FaTrash';
 import { Deserializer } from 'jsonapi-serializer';
 import SingleReport from './SingleReport';
 import useAuth from '../hooks/useAuth';
@@ -77,27 +79,36 @@ export default function SingleReview(prop) {
       .finally(() => setLoading(false));
   }, []);
 
-  const count = [];
+  const count1 = [];
   for (let i = 0; i < score; i += 1) {
-    count.push(i);
+    count1.push(i);
+  }
+
+  const count2 = [];
+  for (let i = 0; i < 5 - score; i += 1) {
+    count2.push(i);
   }
 
   return (
     <>
       {!edit ? (
         <article className="media">
-          <figure className="media-left">
-            <p className="image is-64x64">
-              <img src={user.imageUrl} alt="/" />
-            </p>
-          </figure>
-          { currentUser.id === review.userId ? (
-            <>
-              <button className="button is-info" type="submit" onClick={handleEdit}><BsPencil /></button>
-              <button className="button is-danger" type="submit" onClick={handleDelete}><BsPencil /></button>
-            </>
-          )
-            : ''}
+          <div className="rows">
+            <div className="row is-full">
+              <figure className="media-left">
+                <p className="image is-64x64">
+                  <img src={user.imageUrl} alt="/" />
+                </p>
+              </figure>
+            </div>
+            { currentUser.id === review.userId ? (
+              <div className="row is-full">
+                <button className="button is-info is-small" type="submit" onClick={handleEdit}><BsPencil /></button>
+                <button className="button is-danger is-small" type="submit" onClick={handleDelete}><FaTrash /></button>
+              </div>
+            )
+              : ''}
+          </div>
           <div className="media-content">
             <div className="content">
               <p>
@@ -111,8 +122,11 @@ export default function SingleReview(prop) {
                 <br />
                 <small>
                   <p>
-                    {count.map(() => (
+                    {count1.map(() => (
                       <AiFillStar />
+                    ))}
+                    {count2.map(() => (
+                      <AiOutlineStar />
                     ))}
                   </p>
                 </small>

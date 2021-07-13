@@ -84,7 +84,7 @@ export default function Like(prop) {
     <>
       {' '}
       {like.length !== 0 ? (
-        <button onClick={DeleteLike} id="DeleteLike" type="submit">
+        <button onClick={DeleteLike} id="DeleteLike" type="submit" className="like">
           <FcDislike />
           {' '}
           DisLike
@@ -92,7 +92,7 @@ export default function Like(prop) {
         </button>
       )
         : (
-          <button onClick={CreateLike} id="CreateLike" type="submit">
+          <button onClick={CreateLike} id="CreateLike" type="submit" className="like">
             <FcLike />
             {' '}
             Like
