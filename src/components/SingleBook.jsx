@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import OptionBook from './OptionsBook';
@@ -6,7 +6,7 @@ import OptionBook from './OptionsBook';
 export default function SingleBook(prop) {
   const { book } = prop;
   const {
-    id, title, isbn, author, genre, userId, imageUrl, description,
+    id, title, isbn, author, genre, imageUrl, description,
   } = book;
 
   const location = useLocation();
