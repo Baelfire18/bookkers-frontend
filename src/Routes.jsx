@@ -13,32 +13,26 @@ import User from './views/User';
 import NotFound from './views/NotFound';
 import AuthContextProvider from './contexts/AuthContext';
 import AllUsers from './views/AllUsers';
-import { ModalProvider } from "react-simple-modal-provider";
-import Modal4 from "./components/Modals";
 
 export default function Routes() {
   return (
-    
-      <Router>
-        <ModalProvider value={Modal4}>
-        <AuthContextProvider>
-          <NavBar />
-          <Switch>
-            <Route path="/users/all_users" component={AllUsers} />
-            <Route path="/users/my_profile" component={User} />
-            <Route path="/login" component={LogIn} />
-            <Route path="/signup" component={SignUp} />
-            <Route path="/books/new" component={BookNew} />
-            <Route path="/books/:id/edit" component={BookEdit} />
-            <Route path="/books/:id" component={BookDetail} />
-            <Route path="/books" component={Books} />
-            <Route exact path="/" component={Home} />
-            <Route component={NotFound} />
-          </Switch>
-          <Footer />
-        </AuthContextProvider>
-        </ModalProvider>
-      </Router>
-
+    <Router>
+      <AuthContextProvider>
+        <NavBar />
+        <Switch>
+          <Route path="/users/all_users" component={AllUsers} />
+          <Route path="/users/my_profile" component={User} />
+          <Route path="/login" component={LogIn} />
+          <Route path="/signup" component={SignUp} />
+          <Route path="/books/new" component={BookNew} />
+          <Route path="/books/:id/edit" component={BookEdit} />
+          <Route path="/books/:id" component={BookDetail} />
+          <Route path="/books" component={Books} />
+          <Route exact path="/" component={Home} />
+          <Route component={NotFound} />
+        </Switch>
+        <Footer />
+      </AuthContextProvider>
+    </Router>
   );
 }

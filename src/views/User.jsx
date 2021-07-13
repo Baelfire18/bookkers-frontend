@@ -5,11 +5,8 @@ import SingleBook from '../components/SingleBook';
 import MyReview from '../components/MyReview';
 import MyLikedReviews from '../components/MyLikedReviews';
 import useAuth from '../hooks/useAuth';
-import { useModal } from "react-simple-modal-provider";
-import PopUp from '../components/PopUp';
 
 export default function User() {
-  const { open: openModal4 } = useModal("Modal4");
   const [myBooks, setMyBooks] = useState(false);
   const [myReviews, setMyReviews] = useState(false);
   const [myLikedReviews, setMyLikedReviews] = useState(false);
@@ -56,7 +53,6 @@ export default function User() {
     setMyLikedReviews(true);
   };
 
-  const [buttonPopUp, setButtonPopup] = useState(false);
 
   return (
     <section>
@@ -68,7 +64,7 @@ export default function User() {
             <div className="modal-card">
               <header className="modal-card-head">
                 <p className="modal-card-title">Edit Preferences</p>
-                <button onClick={openModal4} type="submit" aria-label="Delete" />
+                <button type="submit" aria-label="Delete" />
               </header>
               <section className="modal-card-body">
                 <label className="label">Name</label>
@@ -151,16 +147,10 @@ export default function User() {
                     {currentUser.lastName}
                   </span>
                   <br />
-
                   {/* Se conecta acá */}
-                  {/* <a className="button is-primary is-outlined" href="#userBook" id="edit-preferences">
+                  <a className="button is-primary is-outlined" href="#userBook" id="edit-preferences">
                     Edit Preferences
-                  </a> */}
-                  <button className="button is-primary is-outlined" onClick={() => setButtonPopup(true)}> Edit Profile </button>
-
-                  <PopUp trigger={buttonPopUp} setTrigger={setButtonPopup}>
-                    <h3>Funciona la ctm!</h3>
-                  </PopUp>
+                  </a>
                   <br />
                 </p>
                 <p className="tagline">
