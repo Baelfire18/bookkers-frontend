@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Deserializer } from 'jsonapi-serializer';
+import { useModal } from 'react-simple-modal-provider';
 import SingleBook from '../components/SingleBook';
 import MyReview from '../components/MyReview';
 import MyLikedReviews from '../components/MyLikedReviews';
 import useAuth from '../hooks/useAuth';
-import { useModal } from "react-simple-modal-provider";
 import PopUp from '../components/PopUp';
 
 export default function User() {
-  const { open: openModal4 } = useModal("Modal4");
+  const { open: openModal4 } = useModal('Modal4');
   const [myBooks, setMyBooks] = useState(false);
   const [myReviews, setMyReviews] = useState(false);
   const [myLikedReviews, setMyLikedReviews] = useState(false);

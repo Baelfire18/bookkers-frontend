@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { ModalProvider } from 'react-simple-modal-provider';
 import Home from './views/Home';
 import Books from './views/BookList';
 import BookDetail from './views/BookDetail';
@@ -13,14 +14,13 @@ import User from './views/User';
 import NotFound from './views/NotFound';
 import AuthContextProvider from './contexts/AuthContext';
 import AllUsers from './views/AllUsers';
-import { ModalProvider } from "react-simple-modal-provider";
-import Modal4 from "./components/Modals";
+import Modal4 from './components/Modals';
 
 export default function Routes() {
   return (
-    
-      <Router>
-        <ModalProvider value={Modal4}>
+
+    <Router>
+      <ModalProvider value={Modal4}>
         <AuthContextProvider>
           <NavBar />
           <Switch>
@@ -37,8 +37,8 @@ export default function Routes() {
           </Switch>
           <Footer />
         </AuthContextProvider>
-        </ModalProvider>
-      </Router>
+      </ModalProvider>
+    </Router>
 
   );
 }
