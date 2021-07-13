@@ -2,15 +2,29 @@ import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { useParams } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
+import Rating from '@material-ui/lab/Rating';
+import Box from '@material-ui/core/Box';
 
 export default function CreateReview({ onAdd }) {
+
+  const [value, setValue] = useState(2);
+  const [hover, setHover] = useState(-1);
+  const labels = {
+    0: 'Useless',
+    1: 'Useless+',
+    2: 'Poor+',
+    3: 'Ok+',
+    4: 'Good+',
+    5: 'Excellent+',
+  };
+
   const { id } = useParams();
   const { currentUser } = useAuth();
   const [message, setMessage] = useState('');
 
   const initialValues = {
     content: '',
-    score: 5,
+    score: 3,
   };
 
   const handleSubmit = async (values, actions) => {
@@ -42,6 +56,9 @@ export default function CreateReview({ onAdd }) {
   return (
     <>
       <Formik enableReinitialize onSubmit={handleSubmit} initialValues={initialValues}>
+      {({
+          errors, touched, setFieldValue, values,
+        }) => (
         <Form className="media">
           <figure className="media-left">
             <p className="image is-64x64">
@@ -60,13 +77,28 @@ export default function CreateReview({ onAdd }) {
               </p>
             </div>
             <div className="field">
+              <Rating
+                name="score"
+                precision={1}
+                value={values.score}
+                onChange={(event, newValue) => {
+                  setValue(newValue);
+                  setFieldValue("score", newValue);
+                }}
+                onChangeActive={(event, newHover) => {
+                  setHover(newHover);
+                }}
+              />
+              {value !== null && <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>}
+            </div>
+            <div className="field">
               <p className="control">
                 <button className="button" id="CreateReview" type="submit">Post Review</button>
               </p>
             </div>
           </div>
         </Form>
-
+        )}
       </Formik>
       <p>{message}</p>
     </>
