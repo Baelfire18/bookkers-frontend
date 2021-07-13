@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Deserializer } from 'jsonapi-serializer';
-import { useModal } from 'react-simple-modal-provider';
 import SingleBook from '../components/SingleBook';
 import MyReview from '../components/MyReview';
 import MyLikedReviews from '../components/MyLikedReviews';
@@ -53,7 +52,6 @@ export default function User() {
     setMyReviews(false);
     setMyLikedReviews(true);
   };
-
 
   return (
     <section>
