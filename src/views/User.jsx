@@ -216,7 +216,7 @@ export default function User() {
 
           ) : ((myLikedReviews) ? (
             <MyLikedReviews />
-          ) : <></>
+          ) : ''
           ))}
 
         </div>

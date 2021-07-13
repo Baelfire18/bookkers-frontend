@@ -45,9 +45,9 @@ export default function SingleBook(prop) {
                   {' '}
                   <br />
                 </p>
-              ) : <> </>}
+              ) : ''}
             </div>
-          ) : (<> </>) }
+          ) : '' }
         </div>
       </div>
 

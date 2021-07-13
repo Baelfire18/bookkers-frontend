@@ -70,7 +70,7 @@ export default function OptionBook(prop) {
               </p>
             </div>
           ) : (
-            <></>
+            ''
           )}
           { currentUser.admin || currentUser.id === userId ? (
             <div className="field">
@@ -95,7 +95,7 @@ export default function OptionBook(prop) {
               </p>
             </div>
           ) : (
-            <></>
+            ''
           )}
         </>
       )}

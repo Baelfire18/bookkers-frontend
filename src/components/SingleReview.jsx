@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { BsPencil } from '@react-icons/all-files/bs/BsPencil';
 import { FaTrash } from '@react-icons/all-files/fa/FaTrash';
 import { Deserializer } from 'jsonapi-serializer';
@@ -13,6 +14,8 @@ export default function SingleReview(prop) {
   const [user, setUser] = useState([]);
 
   const { review, onRemove } = prop;
+
+  const location = useLocation();
 
   const [error, setError] = useState('');
   const [content, setContent] = useState(review.content);
@@ -117,7 +120,10 @@ export default function SingleReview(prop) {
                       value={score}
                     />
                   </p>
-                </small>
+                  { !location.pathname.includes(`books/${bookId}`) ? (
+                  <Link to={`/books/${bookId}`} className=" has-text-grey-light">Asociated with this books</Link>
+                  ) : '' }
+                  </small>
                 <br />
                 <small>
                   <Like review={review} />
