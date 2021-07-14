@@ -4,12 +4,15 @@ import { BsPencil } from '@react-icons/all-files/bs/BsPencil';
 import { FaTrash } from '@react-icons/all-files/fa/FaTrash';
 import { Deserializer } from 'jsonapi-serializer';
 import Rating from '@material-ui/lab/Rating';
-import SingleReport from './SingleReport';
+import CreateReport from './CreateReport';
+import SingleReport from './SingleReport'
 import useAuth from '../hooks/useAuth';
 import Like from './Like';
 import EditReview from './EditReview';
 
 export default function SingleReview(prop) {
+
+  const { currentUser } = useAuth();
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState([]);
 
@@ -18,11 +21,13 @@ export default function SingleReview(prop) {
   const location = useLocation();
 
   const [report, setReport] = useState(false);
+  const [showReport, setShowReport] = useState(false);
+  const [allReports, setAllReports] = useState([]);
 
   const [error, setError] = useState('');
   const [content, setContent] = useState(review.content);
   const [score, setScore] = useState(review.score);
-  const { currentUser } = useAuth();
+
   const [edit, setEdit] = useState(false);
 
   const {
@@ -36,6 +41,30 @@ export default function SingleReview(prop) {
   const handleEdit = () => {
     setEdit(!edit);
   };
+
+
+  const handleShowReports = async () => {
+    const requestOptions = {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        Authorization: `Bearer ${currentUser.access_token}`,
+      }),
+    };
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/books/${bookId}/reviews/${id}/reports`, requestOptions);
+      if (!response.ok) {
+        const error = await response.text();
+        throw new Error(error);
+      }
+      const data = await response.json();
+      new Deserializer({ keyForAttribute: 'camelCase' }).deserialize(data, (_error, reportsData) => setAllReports(reportsData));
+      setShowReport(!showReport);
+    } catch (error) {
+      error;
+    }
+  };
+  
 
   const handleOnEdit = (updatedReview) => {
     setContent(updatedReview.attributes.content);
@@ -138,12 +167,23 @@ export default function SingleReview(prop) {
                   {' '}
                   <a onClick={handleReport}>Report</a>
                   {' '}
-                  · 7 days
+                  ·
+                  { currentUser.admin ? (
+                    <a onClick={handleShowReports}> Show Reports</a>
+                  ) : ('')}
+                   · 7 days
                 </small>
               </p>
             </div>
             { report ? (
-              <SingleReport bookId={bookId} reviewId={id} onSend={handleReport} />
+              <CreateReport bookId={bookId} reviewId={id} onSend={handleReport} />
+            ) : ('')}
+            { showReport ? (
+              <>
+              {allReports.map((reportEntity) => (
+                <SingleReport report={reportEntity}/>
+              ))}
+              </>
             ) : ('')}
           </div>
         </article>
