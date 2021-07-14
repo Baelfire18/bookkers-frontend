@@ -57,80 +57,6 @@ export default function User() {
     <section>
       <div className="columns">
         <div className="container profile">
-          {/* Esto es el pop out */}
-          <div className="modal" id="edit-preferences-modal">
-            <div className="modal-background" />
-            <div className="modal-card">
-              <header className="modal-card-head">
-                <p className="modal-card-title">Edit Preferences</p>
-                <button type="submit" aria-label="Delete" />
-              </header>
-              <section className="modal-card-body">
-                <label className="label">Name</label>
-                <p className="control">
-                  <input className="input" placeholder="Text input" type="text" />
-                </p>
-                <label className="label">Username</label>
-                <p className="control has-icon has-icon-right">
-                  <input className="input" placeholder="Text input" type="text" value="pmillerk" />
-                </p>
-                <label className="label">Email</label>
-                <p className="control has-icon has-icon-right">
-                  <input className="input" placeholder="Email input" type="text" value="hello@" />
-                  <i className="fa fa-warning" />
-                  <span className="help is-danger">This email is invalid</span>
-                </p>
-                <div className="control">
-                  <div className="control-label is-pulled-left">
-                    <label className="label">Date of Birth</label>
-                  </div>
-                  <span>
-                    <span className="select">
-                      <select>
-                        <option>Month</option>
-                        <option>With options</option>
-                      </select>
-                    </span>
-                    <span className="select">
-                      <select>
-                        <option>Day</option>
-                        <option>With options</option>
-                      </select>
-                    </span>
-                    <span className="select">
-                      <select>
-                        <option>Year</option>
-                        <option>With options</option>
-                      </select>
-                    </span>
-                  </span>
-                </div>
-                <label className="label">Description</label>
-                <p className="control">
-                  <textarea className="textarea" placeholder="Describe Yourself!" />
-                </p>
-                <div className="content">
-                  <h1>Optional Information</h1>
-                </div>
-                <label className="label">Phone Number</label>
-                <p className="control has-icon has-icon-right">
-                  <input className="input" placeholder="Text input" type="text" value="+1 *** *** 0535" />
-                </p>
-                <label className="label">Work</label>
-                <p className="control has-icon has-icon-right">
-                  <input className="input" placeholder="Text input" type="text" value="Greater Washington Publishing" />
-                </p>
-                <label className="label">School</label>
-                <p className="control has-icon has-icon-right">
-                  <input className="input" placeholder="Text input" type="text" value="George Mason University" />
-                </p>
-              </section>
-              <footer className="modal-card-foot">
-                <a href="#userBook" className="button is-primary modal-save">Save changes</a>
-                <a href="#userBook" className="button modal-cancel">Cancel</a>
-              </footer>
-            </div>
-          </div>
           <div className="section profile-heading">
             <div className="columns is-mobile is-multiline">
               <div className="column is-2">
@@ -146,10 +72,6 @@ export default function User() {
                     {currentUser.lastName}
                   </span>
                   <br />
-                  {/* Se conecta acá */}
-                  {/* <a className="button is-primary is-outlined" href="#userBook" id="edit-preferences">
-                    Edit Preferences
-                  </a> */}
                   <Link
                     to="/users/me/edit"
                     className="button is-primary"

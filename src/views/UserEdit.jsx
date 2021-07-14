@@ -37,7 +37,7 @@ export default function UserEdit() {
   }
 
   return (
-    <section className="hero Books is-fullheight">
+    <section className="hero is-success is-fullheight">
       <div className="hero-body">
         <div className="container">
           <div className="columns is-centered">
