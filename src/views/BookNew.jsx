@@ -5,7 +5,6 @@ import BookForm from '../components/BookForm';
 
 export default function BookNew() {
   const { currentUser } = useAuth();
-
   const initialValues = {
     title: '',
     isbn: '',
@@ -15,9 +14,7 @@ export default function BookNew() {
     imageUrl: '',
   };
 
-  if (!currentUser) {
-    return (<Redirect to="/login" />);
-  }
+  if (!currentUser) return <Redirect to="/login" />;
 
   return (
     <section className="hero Books is-fullheight">

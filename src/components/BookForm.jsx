@@ -9,7 +9,7 @@ import { GiClown } from '@react-icons/all-files/gi/GiClown';
 import { BsFillPersonFill } from '@react-icons/all-files/bs/BsFillPersonFill';
 import useAuth from '../hooks/useAuth';
 
-export default function BookDetail(prop) {
+export default function BookForm(prop) {
   const {
     initialValues, method, id, buttonText,
   } = prop;

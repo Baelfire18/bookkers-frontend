@@ -9,6 +9,7 @@ import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import LogIn from './views/LogIn';
 import SignUp from './views/SignUp';
+import UserEdit from './views/UserEdit';
 import User from './views/User';
 import NotFound from './views/NotFound';
 import AuthContextProvider from './contexts/AuthContext';
@@ -20,8 +21,9 @@ export default function Routes() {
       <AuthContextProvider>
         <NavBar />
         <Switch>
-          <Route path="/users/all_users" component={AllUsers} />
-          <Route path="/users/my_profile" component={User} />
+          <Route path="/ewqeqwewqe" component={UserEdit} />
+          <Route path="/users/me" component={User} />
+          <Route path="/users" component={AllUsers} />
           <Route path="/login" component={LogIn} />
           <Route path="/signup" component={SignUp} />
           <Route path="/books/new" component={BookNew} />

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { Deserializer } from 'jsonapi-serializer';
 import SingleBook from '../components/SingleBook';
 import MyReview from '../components/MyReview';
@@ -147,9 +147,16 @@ export default function User() {
                   </span>
                   <br />
                   {/* Se conecta acá */}
-                  <a className="button is-primary is-outlined" href="#userBook" id="edit-preferences">
+                  {/* <a className="button is-primary is-outlined" href="#userBook" id="edit-preferences">
                     Edit Preferences
-                  </a>
+                  </a> */}
+                  <Link
+                    to="/users/me/edit"
+                    className="button is-primary"
+                    id="Edituser"
+                  >
+                    Edit Profile
+                  </Link>
                   <br />
                 </p>
                 <p className="tagline">
