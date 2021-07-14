@@ -21,7 +21,7 @@ export default function Routes() {
       <AuthContextProvider>
         <NavBar />
         <Switch>
-          <Route path="/ewqeqwewqe" component={UserEdit} />
+          <Route path="/users/me/edit" component={UserEdit} />
           <Route path="/users/me" component={User} />
           <Route path="/users" component={AllUsers} />
           <Route path="/login" component={LogIn} />

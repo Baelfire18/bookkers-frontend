@@ -26,9 +26,9 @@ export default function NavBar() {
             <Link to="/" className="navbar-item">Home</Link>
             {currentUser ? (
               <>
-                <Link to="/users/my_profile" className="navbar-item">My Profile</Link>
+                <Link to="/users/me" className="navbar-item">My Profile</Link>
                 {(currentUser.admin) ? (
-                  <Link to="/users/all_users" className="navbar-item">All Users</Link>
+                  <Link to="/users" className="navbar-item">All Users</Link>
                 ) : (
                   ''
                 )}
