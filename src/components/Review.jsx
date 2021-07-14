@@ -17,6 +17,7 @@ export default function Review() {
     setReviews((prevReviews) => [
       ...prevReviews,
       {
+        updatedAt: review.attributes.updatedAt,
         content: review.attributes.content,
         score: review.attributes.score,
         userId: review.attributes.userId,

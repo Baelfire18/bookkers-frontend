@@ -82,9 +82,8 @@ export default function User() {
                   <br />
                 </p>
                 <p className="tagline">
-                  The users profile bio would go here, of course.
-                  It could be two lines or more or whatever.
-                  We should probably limit the amount of characters to ~500 at most though.
+                  <strong>Email: </strong>
+                  {' '}
                   {currentUser.email}
                 </p>
               </div>

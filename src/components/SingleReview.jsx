@@ -4,6 +4,7 @@ import { BsPencil } from '@react-icons/all-files/bs/BsPencil';
 import { FaTrash } from '@react-icons/all-files/fa/FaTrash';
 import { Deserializer } from 'jsonapi-serializer';
 import Rating from '@material-ui/lab/Rating';
+import { formatDistance } from 'date-fns';
 import SingleReport from './SingleReport';
 import useAuth from '../hooks/useAuth';
 import Like from './Like';
@@ -22,6 +23,7 @@ export default function SingleReview(prop) {
   const [error, setError] = useState('');
   const [content, setContent] = useState(review.content);
   const [score, setScore] = useState(review.score);
+  const [date, setDate] = useState(review.updatedAt);
   const { currentUser } = useAuth();
   const [edit, setEdit] = useState(false);
 
@@ -40,6 +42,7 @@ export default function SingleReview(prop) {
   const handleOnEdit = (updatedReview) => {
     setContent(updatedReview.attributes.content);
     setScore(updatedReview.attributes.score);
+    setDate(updatedReview.attributes.updatedAt);
     setEdit(!edit);
   };
 
@@ -137,8 +140,12 @@ export default function SingleReview(prop) {
                   ·
                   {' '}
                   <a onClick={handleReport}>Report</a>
-                  {' '}
-                  · 7 days
+                  {date ? (
+                    <>
+                      <br />
+                      { `Last updated ${formatDistance(new Date(date), new Date(), { addSuffix: true })}` }
+                    </>
+                  ) : ''}
                 </small>
               </p>
             </div>
@@ -148,10 +155,7 @@ export default function SingleReview(prop) {
           </div>
         </article>
       ) : (
-        <>
-          {/* <button className="button is-info" type="submit" onClick={handleEdit}><BsPencil /></button> */}
-          <EditReview content={content} score={score} reviewId={id} onEdit={handleOnEdit} bookId={bookId} />
-        </>
+        <EditReview content={content} score={score} reviewId={id} onEdit={handleOnEdit} bookId={bookId} />
       )}
     </>
   );
