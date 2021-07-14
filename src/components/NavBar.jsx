@@ -45,18 +45,18 @@ export default function NavBar() {
                 <p className="navbar-link">
                   {currentUser.firstName}
                   <div className="navbar-dropdown">
-                    <Link to="/users/my_profile" className="navbar-item" onClick={(event) => { event.target.blur(); }}>
+                    <Link to="/users/my_profile" className="like navbar-item" onClick={(event) => { event.target.blur(); }}>
                       Profile
                       {' '}
                       {' '}
                       <FaUserAlt />
                     </Link>
-                    <a className="navbar-item" type="button" onClick={handleUserLogout}>
+                    <button className="like navbar-item" type="submit" onClick={handleUserLogout}>
                       Log Out
                       {' '}
                       {' '}
                       <FaPowerOff />
-                    </a>
+                    </button>
                   </div>
                 </p>
               </div>

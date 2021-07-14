@@ -4,15 +4,14 @@ import { BsPencil } from '@react-icons/all-files/bs/BsPencil';
 import { FaTrash } from '@react-icons/all-files/fa/FaTrash';
 import { Deserializer } from 'jsonapi-serializer';
 import Rating from '@material-ui/lab/Rating';
-import CreateReport from './CreateReport';
-import SingleReport from './SingleReport'
 import { formatDistance } from 'date-fns';
+import CreateReport from './CreateReport';
+import SingleReport from './SingleReport';
 import useAuth from '../hooks/useAuth';
 import Like from './Like';
 import EditReview from './EditReview';
 
 export default function SingleReview(prop) {
-
   const { currentUser } = useAuth();
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState([]);
@@ -32,7 +31,7 @@ export default function SingleReview(prop) {
   const [edit, setEdit] = useState(false);
 
   const {
-    id, bookId, userId,
+    id, bookId,
   } = review;
 
   const handleReport = () => {
@@ -43,7 +42,6 @@ export default function SingleReview(prop) {
     setEdit(!edit);
   };
 
-
   const handleShowReports = async () => {
     const requestOptions = {
       method: 'GET',
@@ -52,20 +50,11 @@ export default function SingleReview(prop) {
         Authorization: `Bearer ${currentUser.access_token}`,
       }),
     };
-    try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/books/${bookId}/reviews/${id}/reports`, requestOptions);
-      if (!response.ok) {
-        const error = await response.text();
-        throw new Error(error);
-      }
-      const data = await response.json();
-      new Deserializer({ keyForAttribute: 'camelCase' }).deserialize(data, (_error, reportsData) => setAllReports(reportsData));
-      setShowReport(!showReport);
-    } catch (error) {
-      error;
-    }
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/books/${bookId}/reviews/${id}/reports`, requestOptions);
+    const data = await response.json();
+    new Deserializer({ keyForAttribute: 'camelCase' }).deserialize(data, (_error, reportsData) => setAllReports(reportsData));
+    setShowReport(!showReport);
   };
-  
 
   const handleOnEdit = (updatedReview) => {
     setContent(updatedReview.attributes.content);
@@ -82,16 +71,8 @@ export default function SingleReview(prop) {
         Authorization: `Bearer ${currentUser.access_token}`,
       }),
     };
-    try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/books/${bookId}/reviews/${id}`, requestOptions);
-      if (!response.ok) {
-        const error = await response.text();
-        throw new Error(error);
-      }
-      onRemove(id);
-    } catch (error) {
-      error;
-    }
+    await fetch(`${process.env.REACT_APP_API_URL}/books/${bookId}/reviews/${id}`, requestOptions);
+    onRemove(id);
   };
 
   useEffect(() => {
@@ -118,6 +99,10 @@ export default function SingleReview(prop) {
       .finally(() => setLoading(false));
   }, []);
 
+  if (loading) {
+    <h2>Please wait...</h2>;
+  }
+
   return (
     <>
       {!edit ? (
@@ -132,8 +117,8 @@ export default function SingleReview(prop) {
             </div>
             { currentUser.id === review.userId ? (
               <div className="row is-full">
-                <button className="button is-info is-small" type="submit" onClick={handleEdit}><BsPencil /></button>
-                <button className="button is-danger is-small" type="submit" onClick={handleDelete}><FaTrash /></button>
+                <button className="button is-info is-small" type="submit" aria-label="Edit" onClick={handleEdit}><BsPencil /></button>
+                <button className="button is-danger is-small" type="submit" aria-label="Delete" onClick={handleDelete}><FaTrash /></button>
               </div>
             )
               : ''}
@@ -167,11 +152,11 @@ export default function SingleReview(prop) {
                   {' '}
                   ·
                   {' '}
-                  <a onClick={handleReport}>Report</a>
+                  <button className="like" type="submit" onClick={handleReport} onKeyDown={handleReport}>Report</button>
                   {' '}
                   ·
                   { currentUser.admin ? (
-                    <a onClick={handleShowReports}> Show Reports</a>
+                    <button className="like" type="submit" onClick={handleShowReports} onKeyDown={handleShowReports}> Show Reports</button>
                   ) : ('')}
                   {date ? (
                     <>
@@ -187,16 +172,25 @@ export default function SingleReview(prop) {
             ) : ('')}
             { showReport ? (
               <>
-              {allReports.map((reportEntity) => (
-                <SingleReport report={reportEntity}/>
-              ))}
+                {allReports.map((reportEntity) => (
+                  <SingleReport report={reportEntity} />
+                ))}
               </>
             ) : ('')}
           </div>
         </article>
       ) : (
-        <EditReview content={content} score={score} reviewId={id} onEdit={handleOnEdit} bookId={bookId} />
+        <EditReview
+          content={content}
+          score={score}
+          reviewId={id}
+          onEdit={handleOnEdit}
+          bookId={bookId}
+        />
       )}
+      { error ? (
+        <h2>{error}</h2>
+      ) : ('')}
     </>
   );
 }

@@ -1,9 +1,7 @@
 import React from 'react';
 
-
-
 export default function SingleReport(prop) {
-  const { report }= prop;
+  const { report } = prop;
 
   return (
     <article className="media">

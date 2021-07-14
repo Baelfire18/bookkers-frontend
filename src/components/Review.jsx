@@ -56,6 +56,10 @@ export default function Review() {
     return (<h2>Log in to see the reviews</h2>);
   }
 
+  if (loading) {
+    <h2>Loading</h2>;
+  }
+
   return (
     <section className="section is-small">
       <div className="card">

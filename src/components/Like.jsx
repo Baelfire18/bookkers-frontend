@@ -8,6 +8,7 @@ export default function Like(prop) {
   const { review } = prop;
 
   const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
   const { currentUser } = useAuth();
   const [error, setError] = useState(false);
   const [like, setLike] = useState([]);
@@ -52,7 +53,7 @@ export default function Like(prop) {
       }
       setLike(['noLeasEstoHumberto']);
     } catch (error2) {
-      setMessage(error2.message);
+      setMessage(error);
     }
   };
 
@@ -80,6 +81,10 @@ export default function Like(prop) {
       .finally(() => setLoading(false));
   }, []);
 
+  if (loading) {
+    <h2>Loading</h2>;
+  }
+
   return (
     <>
       {' '}
@@ -99,6 +104,7 @@ export default function Like(prop) {
             {' '}
           </button>
         )}
+      {message}
     </>
   );
 }

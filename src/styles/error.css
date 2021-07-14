@@ -539,3 +539,16 @@ button .cacu {
     margin-top: 20px;
   }
 }
+
+button .button-profile {
+  align-items: center;
+  border-bottom-color: #dbdbdb;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  color: #4a4a4a;
+  display: flex;
+  justify-content: center;
+  margin-left:50 px;
+  padding: 0.5em 1em;
+  vertical-align: top;
+}
