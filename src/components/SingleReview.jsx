@@ -17,6 +17,8 @@ export default function SingleReview(prop) {
 
   const location = useLocation();
 
+  const [report, setReport] = useState(false);
+
   const [error, setError] = useState('');
   const [content, setContent] = useState(review.content);
   const [score, setScore] = useState(review.score);
@@ -26,6 +28,10 @@ export default function SingleReview(prop) {
   const {
     id, bookId, userId,
   } = review;
+
+  const handleReport = () => {
+    setReport(!report);
+  };
 
   const handleEdit = () => {
     setEdit(!edit);
@@ -130,13 +136,15 @@ export default function SingleReview(prop) {
                   {' '}
                   ·
                   {' '}
-                  <a href="#AunNoLaHacemos">Report</a>
+                  <a onClick={handleReport}>Report</a>
                   {' '}
                   · 7 days
                 </small>
               </p>
             </div>
-            {/* <SingleReport /> */}
+            { report ? (
+              <SingleReport bookId={bookId} reviewId={id} onSend={handleReport} />
+            ) : ('')}
           </div>
         </article>
       ) : (

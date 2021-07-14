@@ -123,11 +123,6 @@ export default function User() {
                     <span onClick={handleMyLikedReviews}>My Liked Reviews</span>
                   </a>
                 </li>
-                <li className="link">
-                  <a href="/users/1">
-                    <span>Compare</span>
-                  </a>
-                </li>
               </ul>
             </div>
           </div>

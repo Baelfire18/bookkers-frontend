@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Redirect, useParams } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { Deserializer } from 'jsonapi-serializer';
 import useAuth from '../hooks/useAuth';
 import UserForm from '../components/UserForm';
@@ -13,7 +13,14 @@ export default function UserEdit() {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`${process.env.REACT_APP_API_URL}/users/me`)
+    const requestOptions = {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        Authorization: `Bearer ${currentUser.access_token}`,
+      }),
+    };
+    fetch(`${process.env.REACT_APP_API_URL}/users/me`, requestOptions)
       .then((response) => {
         if (response.status !== 200) {
           setError(true);
@@ -41,7 +48,7 @@ export default function UserEdit() {
       <div className="hero-body">
         <div className="container">
           <div className="columns is-centered">
-            <UserForm initialValues={user} method="PATCH" id={currentUser.id} buttonText="Edit Profile" />
+            <UserForm initialValues={{ ...user, acceptedTerms: false }} method="PATCH" id={currentUser.id} buttonText="Edit Profile" />
           </div>
         </div>
       </div>

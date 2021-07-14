@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { FaRegEnvelope } from '@react-icons/all-files/fa/FaRegEnvelope';
@@ -11,7 +11,7 @@ import useAuth from '../hooks/useAuth';
 
 export default function UserForm(prop) {
   const {
-    initialValues, method, id, buttonText,
+    initialValues, method, buttonText,
   } = prop;
 
   const history = useHistory();
@@ -63,7 +63,7 @@ export default function UserForm(prop) {
           formData.append('passwordConfirmation', values.passwordConfirmation);
           formData.append('image', values.file);
           formData.append('acceptedTerms', values.acceptedTerms);
-          const requestOptions = {
+          let requestOptions = {
             method,
             headers: new Headers({
               Accept: 'application/json',
@@ -85,7 +85,15 @@ export default function UserForm(prop) {
             if (method === 'POST') {
               response = await fetch(`${process.env.REACT_APP_API_URL}/users`, requestOptions);
             } else {
-              response = await fetch(`${process.env.REACT_APP_API_URL}/users/${currentUser}`, requestOptions);
+              requestOptions = {
+                method,
+                headers: new Headers({
+                  Accept: 'application/json',
+                  Authorization: `Bearer ${currentUser.access_token}`,
+                }),
+                body: formData,
+              };
+              response = await fetch(`${process.env.REACT_APP_API_URL}/users/${currentUser.id}`, requestOptions);
             }
             if (!response.ok) {
               const error = await response.text();
@@ -99,7 +107,7 @@ export default function UserForm(prop) {
             }
             const user = await response.json();
             handleUserLogin(user);
-            history.push('/users/my_profile');
+            history.push('/users/me');
           } catch (error) {
             setMessage(error.message);
           } finally {
