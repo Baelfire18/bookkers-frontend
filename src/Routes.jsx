@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Home from './views/Home';
 import Books from './views/BookList';
 import BookDetail from './views/BookDetail';
@@ -17,7 +17,6 @@ import AllUsers from './views/AllUsers';
 
 export default function Routes() {
   return (
-    <Router>
       <AuthContextProvider>
         <NavBar />
         <Switch>
@@ -35,6 +34,5 @@ export default function Routes() {
         </Switch>
         <Footer />
       </AuthContextProvider>
-    </Router>
   );
 }

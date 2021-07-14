@@ -9,6 +9,9 @@ export default function UserEdit() {
 
   const [loading, setLoading] = useState(false);
   const { currentUser } = useAuth();
+  if (!currentUser) {
+    return (<Redirect to="/login" />);
+  }
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -34,10 +37,6 @@ export default function UserEdit() {
       .catch(() => setError(true))
       .finally(() => setLoading(false));
   }, []);
-
-  if (!currentUser) {
-    return (<Redirect to="/login" />);
-  }
 
   if (loading) {
     return <h2>Loading...</h2>;
