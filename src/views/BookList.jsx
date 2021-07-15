@@ -5,6 +5,8 @@ import SingleBook from '../components/SingleBook';
 import '../styles/books.css';
 import { BsSearch } from '@react-icons/all-files/bs/BsSearch';
 
+
+/* eslint-disable  */
 function Books() {
   const [values, setValues] = useState([]);
   const [books, setBooks] = useState([]);
