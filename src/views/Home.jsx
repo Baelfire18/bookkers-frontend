@@ -2,30 +2,13 @@ import React from 'react';
 
 export default function Home() {
   return (
-    <div>
-      <h1 className="title">Welcome to Bookkers</h1>
-      <div className="notification is-danger">
-        <button className="button is-danger" type="submit">
-          <strong>Warning!!</strong>
-          {' '}
-          <br />
-          {' '}
-          Están de baja estas vistas (sorry) :(
-        </button>
+    <div className="home-page">
+      <div className="bgimg w3-display-container w3-animate-opacity w3-text-white">
+        <div className="w3-display-middle">
+          <h1 className="w3-jumbo">WELCOME TO BOOKKERS</h1>
+        </div>
       </div>
-
-      <img alt="" src="https://i.ytimg.com/vi/6Z0lStsM6pA/maxresdefault.jpg" />
-      <div className="buttons">
-        <button className="button is-primary" type="submit">Primary</button>
-        <button className="button is-link" type="submit">Link</button>
-      </div>
-
-      <div className="buttons">
-        <button className="button is-info" type="submit">Info</button>
-        <button className="button is-success" type="submit">Success</button>
-        <button className="button is-warning" type="submit">Warning</button>
-        <button className="button is-danger" type="submit">Danger</button>
-      </div>
+      <img alt="" src="https://wallpapercave.com/wp/wp2036897.jpg" />
     </div>
   );
 }

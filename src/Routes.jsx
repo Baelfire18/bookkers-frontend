@@ -17,22 +17,22 @@ import AllUsers from './views/AllUsers';
 
 export default function Routes() {
   return (
-      <AuthContextProvider>
-        <NavBar />
-        <Switch>
-          <Route path="/users/me/edit" component={UserEdit} />
-          <Route path="/users/me" component={User} />
-          <Route path="/users" component={AllUsers} />
-          <Route path="/login" component={LogIn} />
-          <Route path="/signup" component={SignUp} />
-          <Route path="/books/new" component={BookNew} />
-          <Route path="/books/:id/edit" component={BookEdit} />
-          <Route path="/books/:id" component={BookDetail} />
-          <Route path="/books" component={Books} />
-          <Route exact path="/" component={Home} />
-          <Route component={NotFound} />
-        </Switch>
-        <Footer />
-      </AuthContextProvider>
+    <AuthContextProvider>
+      <NavBar />
+      <Switch>
+        <Route path="/users/me/edit" component={UserEdit} />
+        <Route path="/users/me" component={User} />
+        <Route path="/users" component={AllUsers} />
+        <Route path="/login" component={LogIn} />
+        <Route path="/signup" component={SignUp} />
+        <Route path="/books/new" component={BookNew} />
+        <Route path="/books/:id/edit" component={BookEdit} />
+        <Route path="/books/:id" component={BookDetail} />
+        <Route path="/books" component={Books} />
+        <Route exact path="/" component={Home} />
+        <Route component={NotFound} />
+      </Switch>
+      <Footer />
+    </AuthContextProvider>
   );
 }
