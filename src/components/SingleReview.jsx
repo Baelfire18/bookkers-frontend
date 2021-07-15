@@ -5,14 +5,12 @@ import { FaTrash } from '@react-icons/all-files/fa/FaTrash';
 import { Deserializer } from 'jsonapi-serializer';
 import Rating from '@material-ui/lab/Rating';
 import CreateReport from './CreateReport';
-import SingleReport from './SingleReport'
-import { formatDistance } from 'date-fns';
+import SingleReport from './SingleReport';
 import useAuth from '../hooks/useAuth';
 import Like from './Like';
 import EditReview from './EditReview';
 
 export default function SingleReview(prop) {
-
   const { currentUser } = useAuth();
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState([]);
@@ -28,7 +26,6 @@ export default function SingleReview(prop) {
   const [error, setError] = useState('');
   const [content, setContent] = useState(review.content);
   const [score, setScore] = useState(review.score);
-  const [date, setDate] = useState(review.updatedAt);
   const [edit, setEdit] = useState(false);
 
   const {
@@ -42,7 +39,6 @@ export default function SingleReview(prop) {
   const handleEdit = () => {
     setEdit(!edit);
   };
-
 
   const handleShowReports = async () => {
     const requestOptions = {
@@ -65,7 +61,6 @@ export default function SingleReview(prop) {
       error;
     }
   };
-  
 
   const handleOnEdit = (updatedReview) => {
     setContent(updatedReview.attributes.content);
@@ -173,12 +168,6 @@ export default function SingleReview(prop) {
                   { currentUser.admin ? (
                     <a onClick={handleShowReports}> Show Reports</a>
                   ) : ('')}
-                  {date ? (
-                    <>
-                      <br />
-                      { `Last updated ${formatDistance(new Date(date), new Date(), { addSuffix: true })}` }
-                    </>
-                  ) : ''}
                 </small>
               </p>
             </div>
@@ -187,9 +176,9 @@ export default function SingleReview(prop) {
             ) : ('')}
             { showReport ? (
               <>
-              {allReports.map((reportEntity) => (
-                <SingleReport report={reportEntity}/>
-              ))}
+                {allReports.map((reportEntity) => (
+                  <SingleReport report={reportEntity} />
+                ))}
               </>
             ) : ('')}
           </div>
