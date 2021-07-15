@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Deserializer } from 'jsonapi-serializer';
+import { BsSearch } from '@react-icons/all-files/bs/BsSearch';
 import SingleBook from '../components/SingleBook';
 import '../styles/books.css';
-import { BsSearch } from '@react-icons/all-files/bs/BsSearch';
-
 
 /* eslint-disable  */
 function Books() {
@@ -37,7 +36,7 @@ function Books() {
 
   const handleBooks1 = async () => {
     // setCount( count + limit );
-    console.log(values.fragment);
+    // console.log(values.fragment);
     const response = await fetch(`${process.env.REACT_APP_API_URL}/books?fragment=${values.fragment}`);
     if (!response.ok) {
       const error = await response.text();

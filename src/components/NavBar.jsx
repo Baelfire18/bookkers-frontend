@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaUserAlt } from '@react-icons/all-files/fa/FaUserAlt';
 import { FaPowerOff } from '@react-icons/all-files/fa/FaPowerOff';
 import useAuth from '../hooks/useAuth';
 
