@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Formik, Form, Field } from 'formik';
 import { Deserializer } from 'jsonapi-serializer';
 import SingleBook from '../components/SingleBook';
 import '../styles/books.css';
-import { BsSearch } from '@react-icons/all-files/bs/BsSearch';
-
 
 /* eslint-disable  */
 function Books() {
-  const [values, setValues] = useState([]);
+  const initialValues = {
+    genre: ''
+  }
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  // const [count, setCount] = useState(0);
-  // const limit = 4;
 
   useEffect(() => {
     setLoading(true);
@@ -35,10 +34,8 @@ function Books() {
       });
   }, []);
 
-  const handleBooks1 = async () => {
-    // setCount( count + limit );
-    console.log(values.fragment);
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/books?fragment=${values.fragment}`);
+  const handleBooks1 = async (values) => {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/books?fragment=${values.genre}`);
     if (!response.ok) {
       const error = await response.text();
       throw new Error(error);
@@ -90,17 +87,38 @@ function Books() {
           <article className="panel is-success">
             <div className="panel-block">
               <p className="control has-icons-left">
-                <form onSubmit={handleBooks1}>
-                  <input
-                    className="input is-success"
-                    type="text"
-                    placeholder="Search"
-                    value={values.fragment}
-                  />
-                  <span className="icon is-left">
-                    <BsSearch />
-                  </span>
-                </form>
+              <Formik
+                enableReinitialize
+                initialValues={initialValues}
+                onSubmit={handleBooks1}
+              >
+                {({
+                  errors, touched,
+                }) => (
+                  <Form>
+                    <article class="panel is-success">
+                      <div class="panel-block">
+                        <p class="control has-icons-left">
+                          <Field
+                            type="text"
+                            name="genre"
+                            placeholder="Add a valid genre"
+                            className="input is-success"
+                          />
+                          {errors.content && touched.content ? (
+                            <div>{errors.content}</div>
+                          ) : null}
+                        </p>
+                      </div>
+                    </article>
+                    <div className="field">
+                      <p className="control">
+                        <button className="button" id="CreateReview" type="submit">Search Genre</button>
+                      </p>
+                    </div>
+                  </Form>
+                )}
+                </Formik>
               </p>
             </div>
           </article>
