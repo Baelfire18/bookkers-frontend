@@ -539,3 +539,42 @@ button .cacu {
     margin-top: 20px;
   }
 }
+
+button .button-profile {
+  align-items: center;
+  border-bottom-color: #dbdbdb;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  color: #4a4a4a;
+  display: flex;
+  justify-content: center;
+  margin-left:50 px;
+  padding: 0.5em 1em;
+  vertical-align: top;
+}
+
+.w3-jumbo {
+    font-size: 10vh!important;
+    color: rgb(255, 255, 255);
+}
+
+.w3-display-middle {
+  position: absolute;
+  top: 45%;
+  left: 80%;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}
+
+.home-page {
+  background-image: url('https://wallpapercave.com/wp/wp2036897.jpg');
+  margin: 0;
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: black;
+  font-size: 18px;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+

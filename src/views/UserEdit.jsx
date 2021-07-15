@@ -9,6 +9,9 @@ export default function UserEdit() {
 
   const [loading, setLoading] = useState(false);
   const { currentUser } = useAuth();
+  if (!currentUser) {
+    return (<Redirect to="/login" />);
+  }
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -35,23 +38,24 @@ export default function UserEdit() {
       .finally(() => setLoading(false));
   }, []);
 
-  if (!currentUser) {
-    return (<Redirect to="/login" />);
-  }
-
   if (loading) {
     return <h2>Loading...</h2>;
   }
 
   return (
-    <section className="hero is-success is-fullheight">
-      <div className="hero-body">
-        <div className="container">
-          <div className="columns is-centered">
-            <UserForm initialValues={{ ...user, acceptedTerms: false }} method="PATCH" id={currentUser.id} buttonText="Edit Profile" />
+    <>
+      { error ? (
+        <section className="hero is-success is-fullheight">
+          <div className="hero-body">
+            <div className="container">
+              <div className="columns is-centered">
+                <UserForm initialValues={{ ...user, acceptedTerms: false }} method="PATCH" id={currentUser.id} buttonText="Edit Profile" />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </section>
+      ) : ('') }
+    </>
+
   );
 }

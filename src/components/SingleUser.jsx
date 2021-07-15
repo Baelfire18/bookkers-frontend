@@ -23,11 +23,11 @@ export default function SingleUser(prop) {
     try {
       const response = await fetch(`${process.env.REACT_APP_API_URL}/admin/users/${id}`, requestOptions);
       if (!response.ok) {
-        const error = await response.text();
-        throw new Error(error);
+        const error2 = await response.text();
+        throw new Error(error2);
       }
       onRemove(id);
-    } catch (error) {
+    } catch (error2) {
       setError(error);
     }
   };
@@ -44,9 +44,9 @@ export default function SingleUser(prop) {
                 </p>
               </figure>
             </div>
-            { currentUser.admin && parseInt(currentUser.id) !== parseInt(id) ? (
+            { currentUser.admin && parseInt(currentUser.id, 10) !== parseInt(id, 10) ? (
               <div className="row is-full">
-                <button className="button is-danger is-small" type="submit" onClick={handleDelete}><FaTrash /></button>
+                <button className="button is-danger is-small" aria-label="Delete" type="submit" onClick={handleDelete}><FaTrash /></button>
               </div>
             )
               : ''}

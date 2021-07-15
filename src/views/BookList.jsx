@@ -88,16 +88,17 @@ function Books() {
           <article className="panel is-success">
             <div className="panel-block">
               <p className="control has-icons-left">
-              <form onSubmit={handleBooks1}>
-                <input 
-                className="input is-success" 
-                type="text" 
-                placeholder="Search" 
-                value={values.fragment} />
-                <span className="icon is-left">
-                  <BsSearch />
-                </span>
-              </form>
+                <form onSubmit={handleBooks1}>
+                  <input
+                    className="input is-success"
+                    type="text"
+                    placeholder="Search"
+                    value={values.fragment}
+                  />
+                  <span className="icon is-left">
+                    <BsSearch />
+                  </span>
+                </form>
               </p>
             </div>
           </article>

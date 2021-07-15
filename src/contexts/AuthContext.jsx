@@ -9,7 +9,8 @@ let logoutTimer;
 
 export const AuthContext = createContext();
 
-const AuthContextProvider = ({ children }) => {
+const AuthContextProvider = (prop) => {
+  const { children } = prop;
   const [currentUser, storeUser, clearStoredUser] = useLocalStorage('user');
   const [sessionExpDate, storeSessionExpDate, clearSessionExpDate] = useLocalStorage('sessionExpiration');
   const history = useHistory();

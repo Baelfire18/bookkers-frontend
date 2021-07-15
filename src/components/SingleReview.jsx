@@ -29,7 +29,7 @@ export default function SingleReview(prop) {
   const [edit, setEdit] = useState(false);
 
   const {
-    id, bookId, userId,
+    id, bookId,
   } = review;
 
   const handleReport = () => {
@@ -48,24 +48,15 @@ export default function SingleReview(prop) {
         Authorization: `Bearer ${currentUser.access_token}`,
       }),
     };
-    try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/books/${bookId}/reviews/${id}/reports`, requestOptions);
-      if (!response.ok) {
-        const error = await response.text();
-        throw new Error(error);
-      }
-      const data = await response.json();
-      new Deserializer({ keyForAttribute: 'camelCase' }).deserialize(data, (_error, reportsData) => setAllReports(reportsData));
-      setShowReport(!showReport);
-    } catch (error) {
-      error;
-    }
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/books/${bookId}/reviews/${id}/reports`, requestOptions);
+    const data = await response.json();
+    new Deserializer({ keyForAttribute: 'camelCase' }).deserialize(data, (_error, reportsData) => setAllReports(reportsData));
+    setShowReport(!showReport);
   };
 
   const handleOnEdit = (updatedReview) => {
     setContent(updatedReview.attributes.content);
     setScore(updatedReview.attributes.score);
-    setDate(updatedReview.attributes.updatedAt);
     setEdit(!edit);
   };
 
@@ -77,16 +68,8 @@ export default function SingleReview(prop) {
         Authorization: `Bearer ${currentUser.access_token}`,
       }),
     };
-    try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/books/${bookId}/reviews/${id}`, requestOptions);
-      if (!response.ok) {
-        const error = await response.text();
-        throw new Error(error);
-      }
-      onRemove(id);
-    } catch (error) {
-      error;
-    }
+    await fetch(`${process.env.REACT_APP_API_URL}/books/${bookId}/reviews/${id}`, requestOptions);
+    onRemove(id);
   };
 
   useEffect(() => {
@@ -113,6 +96,10 @@ export default function SingleReview(prop) {
       .finally(() => setLoading(false));
   }, []);
 
+  if (loading) {
+    <h2>Please wait...</h2>;
+  }
+
   return (
     <>
       {!edit ? (
@@ -127,8 +114,8 @@ export default function SingleReview(prop) {
             </div>
             { currentUser.id === review.userId ? (
               <div className="row is-full">
-                <button className="button is-info is-small" type="submit" onClick={handleEdit}><BsPencil /></button>
-                <button className="button is-danger is-small" type="submit" onClick={handleDelete}><FaTrash /></button>
+                <button className="button is-info is-small" type="submit" aria-label="Edit" onClick={handleEdit}><BsPencil /></button>
+                <button className="button is-danger is-small" type="submit" aria-label="Delete" onClick={handleDelete}><FaTrash /></button>
               </div>
             )
               : ''}
@@ -162,11 +149,11 @@ export default function SingleReview(prop) {
                   {' '}
                   ·
                   {' '}
-                  <a onClick={handleReport}>Report</a>
+                  <button className="like" type="submit" onClick={handleReport} onKeyDown={handleReport}>Report</button>
                   {' '}
                   ·
                   { currentUser.admin ? (
-                    <a onClick={handleShowReports}> Show Reports</a>
+                    <button className="like" type="submit" onClick={handleShowReports} onKeyDown={handleShowReports}> Show Reports</button>
                   ) : ('')}
                 </small>
               </p>
@@ -184,8 +171,17 @@ export default function SingleReview(prop) {
           </div>
         </article>
       ) : (
-        <EditReview content={content} score={score} reviewId={id} onEdit={handleOnEdit} bookId={bookId} />
+        <EditReview
+          content={content}
+          score={score}
+          reviewId={id}
+          onEdit={handleOnEdit}
+          bookId={bookId}
+        />
       )}
+      { error ? (
+        <h2>{error}</h2>
+      ) : ('')}
     </>
   );
 }

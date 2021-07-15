@@ -17,7 +17,6 @@ export default function Review() {
     setReviews((prevReviews) => [
       ...prevReviews,
       {
-        updatedAt: review.attributes.updatedAt,
         content: review.attributes.content,
         score: review.attributes.score,
         userId: review.attributes.userId,
@@ -54,6 +53,10 @@ export default function Review() {
 
   if (!currentUser) {
     return (<h2>Log in to see the reviews</h2>);
+  }
+
+  if (loading) {
+    <h2>Loading</h2>;
   }
 
   return (

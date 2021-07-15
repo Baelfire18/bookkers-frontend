@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import { FaRegEnvelope } from '@react-icons/all-files/fa/FaRegEnvelope';
-import { AiFillLock } from '@react-icons/all-files/ai/AiFillLock';
+import { GiUnicorn } from '@react-icons/all-files/gi/GiUnicorn';
+import { AiFillBook } from '@react-icons/all-files/ai/AiFillBook';
 import { FiUpload } from '@react-icons/all-files/fi/FiUpload';
-import { GiClown } from '@react-icons/all-files/gi/GiClown';
+import { BsCode } from '@react-icons/all-files/bs/BsCode';
 import { BsFillPersonFill } from '@react-icons/all-files/bs/BsFillPersonFill';
 import useAuth from '../hooks/useAuth';
 
@@ -101,7 +101,7 @@ export default function BookForm(prop) {
                     <div>{errors.title}</div>
                   ) : null}
                   <span className="icon is-small is-left">
-                    <FaRegEnvelope />
+                    <AiFillBook />
                   </span>
                 </div>
               </label>
@@ -116,7 +116,7 @@ export default function BookForm(prop) {
                     <div>{errors.isbn}</div>
                   ) : null}
                   <span className="icon is-small is-left">
-                    <GiClown />
+                    <BsCode />
                   </span>
                 </div>
               </label>
@@ -146,7 +146,7 @@ export default function BookForm(prop) {
                     <div>{errors.genre}</div>
                   ) : null}
                   <span className="icon is-small is-left">
-                    <AiFillLock />
+                    <GiUnicorn />
                   </span>
                 </div>
               </label>
@@ -155,14 +155,11 @@ export default function BookForm(prop) {
             <div className="field">
               <label htmlFor="description" className="label">
                 Description
-                <div className="control has-icons-left">
+                <div className="control">
                   <Field type="text" name="description" className="textarea" placeholder="Noice" />
                   {errors.description && touched.description ? (
                     <div>{errors.description}</div>
                   ) : null}
-                  <span className="icon is-small is-left">
-                    <AiFillLock />
-                  </span>
                 </div>
               </label>
             </div>

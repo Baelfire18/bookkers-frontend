@@ -106,21 +106,21 @@ export default function User() {
               <ul>
 
                 <li className={myReviews ? 'link is-active' : 'link'}>
-                  <a>
-                    <span onClick={handleMyReviews}>My Reviews</span>
-                  </a>
+                  <button className="like" type="submit">
+                    <span onClick={handleMyReviews} onKeyDown={handleMyReviews} role="button" tabIndex="0">My Reviews</span>
+                  </button>
                 </li>
 
                 <li className={myBooks ? 'link is-active' : 'link'}>
-                  <a>
-                    <span onClick={handleMybooks}>My Books</span>
-                  </a>
+                  <button className="like" type="submit">
+                    <span onClick={handleMybooks} onKeyDown={handleMybooks} role="button" tabIndex="0">My Books</span>
+                  </button>
                 </li>
 
                 <li className={myLikedReviews ? 'link is-active' : 'link'}>
-                  <a>
-                    <span onClick={handleMyLikedReviews}>My Liked Reviews</span>
-                  </a>
+                  <button className="like" type="submit">
+                    <span onClick={handleMyLikedReviews} onKeyDown={handleMybooks} role="button" tabIndex="0">My Liked Reviews</span>
+                  </button>
                 </li>
               </ul>
             </div>
@@ -132,14 +132,15 @@ export default function User() {
                 <SingleBook key={book.id} book={book} />
               ))}
             </ul>
-          ) : ((myReviews) ? (
+          ) : ('')}
+          {(myReviews) ? (
 
             <MyReview />
 
-          ) : ((myLikedReviews) ? (
+          ) : ('')}
+          {(myLikedReviews) ? (
             <MyLikedReviews />
-          ) : ''
-          ))}
+          ) : ('')}
 
         </div>
       </div>
