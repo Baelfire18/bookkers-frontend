@@ -27,7 +27,7 @@ export default function NavBar() {
             {currentUser ? (
               <>
                 <Link to="/users/me" className="navbar-item">My Profile</Link>
-                {(currentUser.admin) ? (
+                {(currentUser) ? (
                   <Link to="/users" className="navbar-item">All Users</Link>
                 ) : (
                   ''
@@ -36,7 +36,7 @@ export default function NavBar() {
             ) : ('')}
             <Link to="/books" className="navbar-item">Books</Link>
             <a href="https://github.com/IIC2513-2021-1/grupo-demaciagang-p2-frontend" target="_blanck" className="navbar-item"> About Us</a>
-            <a className="navbar-item" href="/chileNecesitaAJoseAntonioKast">
+            <a className="navbar-item" href="/notFound">
               <img src="https://cdn.pixabay.com/photo/2013/07/12/17/50/bookmark-152545_960_720.png" width="40" height="80" className="d-inline-block align-top" alt="\" />
             </a>
 
@@ -45,12 +45,6 @@ export default function NavBar() {
                 <p className="navbar-link">
                   {currentUser.firstName}
                   <div className="navbar-dropdown">
-                    <Link to="/users/my_profile" className="like navbar-item" onClick={(event) => { event.target.blur(); }}>
-                      Profile
-                      {' '}
-                      {' '}
-                      <FaUserAlt />
-                    </Link>
                     <button className="like navbar-item" type="submit" onClick={handleUserLogout}>
                       Log Out
                       {' '}
