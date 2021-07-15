@@ -44,7 +44,7 @@ export default function UserEdit() {
 
   return (
     <>
-      { error ? (
+      { !error ? (
         <section className="hero is-success is-fullheight">
           <div className="hero-body">
             <div className="container">

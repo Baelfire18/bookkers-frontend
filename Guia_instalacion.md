@@ -37,4 +37,4 @@ Finalmente, tanto para correr el backend o frontend se debe utilizar "yarn start
 [Repositorio del template](https://github.com/IIC2513/generator-template/wiki/Generator-commands)
 [Documentación de yarn](https://yarnpkg.com/)
 [Documentación de Yeoman](https://yeoman.io/)
-[Documentación nuestra API, falta el link](https://documenter.getpostman.com/view/13524334/TzeWF7TR#70c4b41d-7485-4032-ae28-2318b9e0729e)
+[Documentación nuestra API](https://documenter.getpostman.com/view/13524334/TzeWF7TR)
