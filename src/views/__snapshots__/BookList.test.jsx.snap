@@ -298,13 +298,13 @@ Array [
               onSubmit={[Function]}
             >
               <article
-                class="panel is-success"
+                className="panel is-success"
               >
                 <div
-                  class="panel-block"
+                  className="panel-block"
                 >
                   <p
-                    class="control has-icons-left"
+                    className="control has-icons-left"
                   >
                     <input
                       className="input is-success"
