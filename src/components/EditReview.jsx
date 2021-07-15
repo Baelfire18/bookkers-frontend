@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import { useParams } from 'react-router-dom';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 import useAuth from '../hooks/useAuth';
 
-export default function CreateReview(prop) {
-  const { onAdd } = prop;
+export default function EditReview(prop) {
   const [value, setValue] = useState(2);
   const [hover, setHover] = useState(-1);
   const labels = {
@@ -19,13 +17,15 @@ export default function CreateReview(prop) {
     5: 'Excellent+',
   };
 
-  const { id } = useParams();
+  const {
+    content, score, reviewId, onEdit, bookId,
+  } = prop;
   const { currentUser } = useAuth();
   const [message, setMessage] = useState('');
 
   const initialValues = {
-    content: '',
-    score: 3,
+    content,
+    score,
   };
 
   const handleSubmit = async (values, actions) => {
@@ -33,7 +33,7 @@ export default function CreateReview(prop) {
     formData.append('content', values.content);
     formData.append('score', values.score);
     const requestOptions = {
-      method: 'POST',
+      method: 'PATCH',
       headers: new Headers({
         Accept: 'application/json',
         Authorization: `Bearer ${currentUser.access_token}`,
@@ -41,13 +41,13 @@ export default function CreateReview(prop) {
       body: formData,
     };
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/books/${id}/reviews`, requestOptions);
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/books/${bookId}/reviews/${reviewId}`, requestOptions);
       if (!response.ok) {
         const error = await response.text();
         throw new Error(error);
       }
       const review = await response.json();
-      onAdd(review.data);
+      onEdit(review.data);
       actions.resetForm({ values: initialValues });
     } catch (error) {
       setMessage(error.message);
@@ -112,7 +112,7 @@ export default function CreateReview(prop) {
               </div>
               <div className="field">
                 <p className="control">
-                  <button className="button" id="CreateReview" type="submit">Post Review</button>
+                  <button className="button" id="CreateReview" type="submit">Edit Review</button>
                 </p>
               </div>
             </div>

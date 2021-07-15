@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 import { Deserializer } from 'jsonapi-serializer';
-import SingleBook from '../components/SingleBook';
-import Review from '../components/Review';
+import useAuth from '../hooks/useAuth';
+import BookForm from '../components/BookForm';
 
-export default function BookDetail() {
+export default function BookEdit() {
   const { id } = useParams();
+
   const [book, setBook] = useState([]);
+
   const [loading, setLoading] = useState(false);
+  const { currentUser } = useAuth();
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -20,7 +23,6 @@ export default function BookDetail() {
         }
         return response.json();
       })
-      // .then(setBook)
       .then((data) => {
         new Deserializer({ keyForAttribute: 'camelCase' }).deserialize(data, (_error, bookData) => setBook(bookData));
       })
@@ -28,25 +30,30 @@ export default function BookDetail() {
       .finally(() => setLoading(false));
   }, []);
 
+  if (!currentUser) {
+    return (<Redirect to="/login" />);
+  }
+
   if (loading) {
     return <h2>Loading...</h2>;
   }
 
   return (
-    <div className="Books" heigh="80%">
-      {error ? (
-        <h2>
-          Something went wrong, please try again later
-          {error}
-        </h2>
-      ) : (
-        <div>
-          <SingleBook key={book.bookId} book={book} />
-          <div className="container is-max-desktop">
-            <Review />
+    <>
+      { error ? (
+        <section className="hero Books is-fullheight">
+          <div className="hero-body">
+            <div className="container">
+              <div className="columns is-centered">
+                <BookForm initialValues={book} method="PATCH" id={id} buttonText="Edit Book" />
+              </div>
+            </div>
           </div>
-        </div>
+        </section>
+      ) : (
+        <h2>{error}</h2>
       )}
-    </div>
+
+    </>
   );
 }

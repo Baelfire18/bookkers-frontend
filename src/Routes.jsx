@@ -1,34 +1,38 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Home from './views/Home';
-// import AuthorList from './views/AuthorList';
-// import AuthorDetail from './views/AuthorDetail';
 import Books from './views/BookList';
 import BookDetail from './views/BookDetail';
+import BookNew from './views/BookNew';
+import BookEdit from './views/BookEdit';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
-// import SingleBook from './components/SingleBook';
 import LogIn from './views/LogIn';
-import Sign from './views/SignIn';
+import SignUp from './views/SignUp';
+import UserEdit from './views/UserEdit';
 import User from './views/User';
 import NotFound from './views/NotFound';
+import AuthContextProvider from './contexts/AuthContext';
+import AllUsers from './views/AllUsers';
 
 export default function Routes() {
   return (
-    <Router>
+    <AuthContextProvider>
       <NavBar />
       <Switch>
-        <Route path="/users/:id" component={User} />
+        <Route path="/users/me/edit" component={UserEdit} />
+        <Route path="/users/me" component={User} />
+        <Route path="/users" component={AllUsers} />
         <Route path="/login" component={LogIn} />
-        <Route path="/signin" component={Sign} />
+        <Route path="/signup" component={SignUp} />
+        <Route path="/books/new" component={BookNew} />
+        <Route path="/books/:id/edit" component={BookEdit} />
         <Route path="/books/:id" component={BookDetail} />
         <Route path="/books" component={Books} />
-        {/* <Route path="/authors/:id" component={AuthorDetail} />
-        <Route path="/authors" component={AuthorList} /> */}
         <Route exact path="/" component={Home} />
         <Route component={NotFound} />
       </Switch>
       <Footer />
-    </Router>
+    </AuthContextProvider>
   );
 }

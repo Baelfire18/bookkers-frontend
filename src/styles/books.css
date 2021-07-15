@@ -35,3 +35,17 @@
   width: clamp(200px, 70%, 600px);
   height: clamp(200px, 70%, 600px);
 }
+
+.like {
+  border: none;
+  background: none;
+}
+.like:hover {
+  /* background-color: red; Green */
+  color: #485fc7;
+  cursor: pointer;
+}
+
+.card {
+  text-align: center;
+}
