@@ -40,7 +40,7 @@ export default function BookEdit() {
 
   return (
     <>
-      { error ? (
+      { !error ? (
         <section className="hero Books is-fullheight">
           <div className="hero-body">
             <div className="container">
