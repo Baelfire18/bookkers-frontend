@@ -112,9 +112,11 @@ export default function SingleReview(prop) {
                 </p>
               </figure>
             </div>
-            { currentUser.id === review.userId ? (
+            { currentUser.id === review.userId || currentUser.admin ? (
               <div className="row is-full">
-                <button className="button is-info is-small" type="submit" aria-label="Edit" onClick={handleEdit}><BsPencil /></button>
+                { currentUser.id === review.userId ? (
+                  <button className="button is-info is-small" type="submit" aria-label="Edit" onClick={handleEdit}><BsPencil /></button>
+                ) : ''}
                 <button className="button is-danger is-small" type="submit" aria-label="Delete" onClick={handleDelete}><FaTrash /></button>
               </div>
             )

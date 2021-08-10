@@ -35,8 +35,6 @@ export default function SingleBook(prop) {
                 {' '}
                 {isbn}
               </p>
-              <a href="/HumbertoAmaElResponsive">#Humberto Ama El Responsive</a>
-              <br />
               {currentUser ? (
                 <p>
                   {' '}
