@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
+import { BsSearch } from '@react-icons/all-files/bs/BsSearch';
 import { Deserializer } from 'jsonapi-serializer';
 import SingleBook from '../components/SingleBook';
 import '../styles/books.css';
@@ -53,8 +54,8 @@ function Books() {
           </div>
           <Link className="button is-success" to="/books/new">Create New Book</Link>
           <br />
-          <article className="panel is-success">
-            <div className="panel-block">
+          <article className="columns is-centered panel is-success">
+            <div className="column panel-block is-three-fifths auto">
               <p className="control has-icons-left">
                 <Formik
                   enableReinitialize
@@ -77,6 +78,9 @@ function Books() {
                             {errors.content && touched.content ? (
                               <div>{errors.content}</div>
                             ) : null}
+                            <span className="icon is-small is-left">
+                              <BsSearch />
+                            </span>
                           </p>
                         </div>
                       </article>
