@@ -34,7 +34,7 @@ export default function NavBar() {
               </>
             ) : ('')}
             <Link to="/books" className="navbar-item">Books</Link>
-            <a href="https://github.com/IIC2513-2021-1/grupo-demaciagang-p2-frontend" target="_blanck" className="navbar-item"> About Us</a>
+            <a href="https://github.com/Baelfire18/bookkers-frontend" target="_blanck" className="navbar-item"> About Us</a>
             <a className="navbar-item" href="/notFound">
               <img src="https://cdn.pixabay.com/photo/2013/07/12/17/50/bookmark-152545_960_720.png" width="40" height="80" className="d-inline-block align-top" alt="\" />
             </a>
