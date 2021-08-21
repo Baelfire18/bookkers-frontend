@@ -1,14 +1,14 @@
-## Acceptance details
+# Acceptance details
 
 All this where made according with this [requests](https://github.com/IIC2513-2021-1/projects/blob/main/Enunciados/Pruebas%20de%20aceptaci%C3%B3n/Bookers.pdf).
 
-### Assumptions
+## Assumptions
 
 - The use of a review detail view was not found necessary, since all the necessary information about the review is displayed in the Single Book view.
 - It was not found necessary to make a view for other users other than the logged, since there is a view where you can see all the information that was found necessary for each user.
 - It was not found necessary to make a report details view, since in case the admin is logged in, he can see all the reports, with all the information that was found necessary.
 
-#### Acceptance Tests:
+## Acceptance Tests:
 
 - BK01: Fulfilled. Path: /signup
 - BK02: Fulfilled. Path: /login
